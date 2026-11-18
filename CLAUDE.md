@@ -1,12 +1,101 @@
-# chi2
+# CHI2 · Web principal
 
-> Proyecto en etapa inicial: el stack todavía no está definido. Actualizar esta sección
-> (stack, cómo correr la app, cómo correr los tests) apenas se decida.
+Sitio público y contenedor de la marca. Presenta quiénes somos y qué hacemos, y es la puerta de entrada al área de clientes (portal de acceso, a futuro).
 
-## Equipo y forma de trabajo
+**Estado:** esqueleto inicial. Pendiente de completar por el equipo.
+**Última actualización:** 2026-11-18
+
+---
+
+## 1. Identidad
+
+- **Nombre de la marca:** CHI2
+- **Dominio:** [PENDIENTE]
+- **Tono visual:** sobrio y editorial. Fondo claro, tipografía grande, casos contados como historias, sin elementos genéricos de plantilla.
+- **Paleta:** [PENDIENTE]
+- **Tipografías:** [PENDIENTE]
+- **Logo:** [PENDIENTE]
+
+## 2. Presentación
+
+- **Quiénes somos:** estudiantes avanzados de Ingeniería en Sistemas de Información en la UTN FRC, que desarrollan sistemas a medida.
+- **Equipo:** Nahuel Luna y Daniel Patolsky.
+- **Mensaje principal (titular):** [PENDIENTE: una frase que diga qué hacemos y para quién]
+
+## 3. Servicios
+
+- **Sistemas a medida:** [PENDIENTE: descripción en una o dos frases]
+- **Otros servicios:** [PENDIENTE]
+
+## 4. Rubros y clientes objetivo
+
+- Barberías
+- Peluquerías
+- Gestión de tareas
+- Negocios en general
+
+## 5. Proyectos (casos)
+
+Cada caso se presenta con problema, solución, tecnologías y resultado. Los proyectos de facultad se rotulan como "proyecto académico".
+
+| Caso | Tipo | Estado |
+|---|---|---|
+| Caso 1 | [PENDIENTE: real o académico] | [PENDIENTE] |
+| Caso 2 | [PENDIENTE: real o académico] | [PENDIENTE] |
+
+Solo se muestran como clientes los proyectos reales cuyo cliente haya dado permiso. No se usan testimonios ficticios.
+
+## 6. Estructura de páginas
+
+1. **Inicio:** titular, servicios destacados y dos o tres casos.
+2. **Servicios:** qué hacemos y con qué tipo de negocio trabajamos.
+3. **Casos:** lista y detalle de cada caso.
+4. **Quiénes somos:** equipo y presentación general.
+5. **Contacto:** formulario o datos de contacto.
+6. **Área de clientes:** enlace al portal de acceso (a futuro, no en la primera versión).
+
+## 7. Contacto
+
+- **Email:** [PENDIENTE]
+- **WhatsApp:** [PENDIENTE]
+- **LinkedIn:** [PENDIENTE]
+
+## 8. Stack técnico
+
+- **Backend:** Java 21 con Spring Boot
+- **Plantillas:** Thymeleaf
+- **Estilos:** Tailwind CSS
+- **Base de datos:** PostgreSQL, con migraciones Flyway
+- **Pruebas:** JUnit 5 y Testcontainers
+- **Build:** Maven
+- **Hosting inicial:** servicio en la nube (Render o Railway), a confirmar
+- **Diseño previo:** Figma, antes de codificar
+
+**Decisión de arquitectura:** el backend se diseña como API REST desde el inicio, para que una app nativa futura consuma los mismos endpoints.
+
+## 9. Decisiones tomadas
+
+- El sitio público y el área de clientes son partes separadas.
+- La marca se presenta como estudiantes avanzados de Ingeniería en Sistemas de Información en la UTN FRC, en "Quiénes somos", sin destacarlo en el titular.
+- Tono visual sobrio y editorial.
+
+## 10. Pendientes para el equipo
+
+- [ ] Definir dominio y confirmar disponibilidad.
+- [ ] Definir paleta, tipografías y logo.
+- [ ] Redactar el titular y la descripción de servicios.
+- [ ] Completar los datos de contacto.
+- [ ] Documentar los dos proyectos (problema, tecnologías, resultado).
+- [ ] Pedir permiso a los clientes reales para mostrarlos.
+- [ ] Elegir hosting.
+- [ ] Bocetar las páginas en Figma.
+
+---
+
+## 11. Equipo y forma de trabajo
 
 Trabajamos dos personas en paralelo, cada una con su propio Claude. Estas reglas aplican
-a cualquier sesión de Claude en este repo, sea de quien sea.
+a cualquier sesión de Claude en este repo, sea de quien sea (Nahuel o Daniel).
 
 ### Ramas
 
