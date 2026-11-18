@@ -1,0 +1,9 @@
+services:
+  postgres:
+    image: 'postgres:17'
+    environment:
+      - 'POSTGRES_DB=chi2'
+      - 'POSTGRES_PASSWORD=chi2'
+      - 'POSTGRES_USER=chi2'
+    ports:
+      - '5432'

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(titulo)">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title th:text="${titulo} + ' · CHI2'">CHI2</title>
+	<link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+
+<header th:fragment="encabezado" class="border-b border-black/10">
+	<nav class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4 px-4 py-6">
+		<a th:href="@{/}" class="text-xl font-bold tracking-tight">CHI2</a>
+		<ul class="flex flex-wrap gap-6 text-sm text-tenue">
+			<li><a th:href="@{/servicios}" class="hover:text-tinta">Servicios</a></li>
+			<li><a th:href="@{/casos}" class="hover:text-tinta">Casos</a></li>
+			<li><a th:href="@{/quienes-somos}" class="hover:text-tinta">Quiénes somos</a></li>
+			<li><a th:href="@{/contacto}" class="hover:text-tinta">Contacto</a></li>
+		</ul>
+	</nav>
+</header>
+
+<footer th:fragment="pie" class="mt-24 border-t border-black/10">
+	<div class="mx-auto max-w-5xl px-4 py-8 text-sm text-tenue">
+		© <span th:text="${#temporals.year(#temporals.createNow())}">2026</span> CHI2
+	</div>
+</footer>
+
+</body>
+</html>

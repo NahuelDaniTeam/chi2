@@ -73,6 +73,27 @@ Solo se muestran como clientes los proyectos reales cuyo cliente haya dado permi
 
 **Decisión de arquitectura:** el backend se diseña como API REST desde el inicio, para que una app nativa futura consuma los mismos endpoints.
 
+### Cómo correr el proyecto
+
+Requisitos: Java 21, Docker Desktop **abierto** (la base local y los tests usan Postgres en Docker). Node no hace falta: Maven lo descarga solo.
+
+| Qué | Comando |
+|---|---|
+| Levantar la app (http://localhost:8080) | `./mvnw spring-boot:run` — arranca Postgres solo vía `compose.yaml` |
+| Build completo + todos los tests | `./mvnw verify` |
+| Recompilar CSS mientras se editan plantillas | `npm run watch:css` (en otra terminal, con la app corriendo) |
+
+### Estructura y convenciones
+
+- `src/main/java/com/chi2/web/pagina/` — controladores de páginas públicas (Thymeleaf).
+- `src/main/java/com/chi2/web/api/` — `@RestController` de la API REST, siempre bajo `/api/...`.
+- `src/main/resources/templates/` — vistas; `fragments/layout.html` tiene `head`, `encabezado` y `pie` compartidos.
+- `src/main/frontend/main.css` — entrada de Tailwind v4; los tokens de marca van en el bloque `@theme`. El CSS compilado (`static/css/main.css`) se genera en el build y **no se commitea**.
+- `src/main/resources/db/migration/` — migraciones Flyway `V<n>__descripcion.sql`. **Nunca editar una migración ya mergeada a `main`**; crear una nueva. Si los dos crean la misma versión `V<n>` en ramas distintas, quien mergea segundo renumera la suya.
+- El esquema lo define solo Flyway (`ddl-auto=validate`).
+- La app corre en **UTC** (fechas guardadas en UTC; convertir a hora argentina solo al mostrar).
+- Todo endpoint o página nueva lleva su test (`@WebMvcTest` para controladores; `@SpringBootTest` + Testcontainers cuando toca la base).
+
 ## 9. Decisiones tomadas
 
 - El sitio público y el área de clientes son partes separadas.

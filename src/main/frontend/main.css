@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+/* Tailwind escanea las plantillas Thymeleaf para generar solo las clases usadas */
+@source "../resources/templates";
+
+/* Tokens de marca: completar cuando se definan paleta y tipografías (CLAUDE.md §1) */
+@theme {
+  --color-fondo: #fafaf8;
+  --color-tinta: #1a1a1a;
+  --color-tenue: #6b6b6b;
+}
