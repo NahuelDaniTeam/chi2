@@ -2,12 +2,12 @@
 
 Sitio público y contenedor de la marca. Presenta quiénes somos y qué hacemos, y es la puerta de entrada al área de clientes (portal de acceso, a futuro).
 
-**Estado:** esqueleto inicial. Pendiente de completar por el equipo.
+**Estado:** v1 en construcción: páginas, contenido y formulario de contacto hechos; faltan los pendientes de `PENDIENTES.md` para publicar.
 **Última actualización:** 2026-11-18
 
 **Documentos de referencia:** `docs/01-vision-alcance.md` (visión, alcance de la v1, principios de diseño,
-riesgos y criterio de "v1 terminada") y `docs/02-contenido.md` (los textos del sitio: las plantillas usan
-esos textos, no se inventan otros). Todo lo que se construya tiene que respetarlos; si este archivo y esos
+riesgos y criterio de "v1 terminada") `docs/02-contenido.md` (los textos del sitio: las plantillas usan
+esos textos, no se inventan otros) y `docs/03-formulario-contacto.md` (especificación del formulario). Todo lo que se construya tiene que respetarlos; si este archivo y esos
 documentos se contradicen, mandan los documentos y se corrige este archivo.
 
 ---
@@ -99,11 +99,30 @@ Si Postgres ya estaba corriendo de antes, Spring Boot no levanta los servicios n
 
 ### Estructura y convenciones
 
-- `src/main/java/com/chi2/web/pagina/` — controladores de páginas públicas (Thymeleaf).
-- `src/main/java/com/chi2/web/proyecto/` — proyectos del sitio. El contenido se edita en `CatalogoProyectos` (no hay panel de administración en la v1).
-- `src/main/java/com/chi2/web/contacto/` — datos de contacto (`chi2.contacto.*` en `application.properties`, o variables `CHI2_CONTACTO_WHATSAPP` / `CHI2_CONTACTO_EMAIL`). Las vistas los reciben como `contacto` (ej: `${contacto.linkWhatsapp()}`).
-- `src/main/java/com/chi2/web/api/` — `@RestController` de la API REST, siempre bajo `/api/...`.
-- `src/main/resources/templates/` — vistas; `fragments/layout.html` tiene `head(titulo, descripcion)`, `encabezado`, `cta`, `tarjeta(p)` y `pie` compartidos. Diseñar primero para celular.
+```
+docs/                         análisis y especificaciones (NN-tema.md)
+PENDIENTES.md                 hoja de pendientes del equipo (§10)
+compose.yaml                  Postgres + Mailpit para desarrollo
+src/main/java/com/chi2/web/
+├── WebApplication.java
+├── ConfiguracionGeneral.java Clock (UTC) y @EnableScheduling
+├── pagina/                   páginas públicas fijas (inicio, servicios, quiénes somos)
+├── proyecto/                 proyectos y casos (contenido en CatalogoProyectos)
+├── consulta/                 página /contacto y su formulario: dominio, service, repository, mail (docs/03)
+├── contacto/                 datos de contacto públicos (WhatsApp, mail) disponibles en todas las vistas
+└── api/                      @RestController bajo /api/... y su manejo de errores
+src/main/resources/
+├── templates/                vistas Thymeleaf (fragments/layout.html = piezas compartidas)
+├── static/                   favicon e íconos en la raíz; imágenes en img/<sección>/
+└── db/migration/             migraciones Flyway
+src/main/frontend/main.css    entrada de Tailwind
+src/test/java/...             tests, mismo paquete que la clase que prueban
+```
+
+- Una funcionalidad nueva va en su propio paquete con sus capas (ver "Arquitectura en capas"); su `@RestController` va en `api/`.
+- `contacto/` — datos de contacto (`chi2.contacto.*` en `application.properties`, o variables `CHI2_CONTACTO_WHATSAPP` / `CHI2_CONTACTO_EMAIL`). Las vistas los reciben como `contacto` (ej: `${contacto.linkWhatsapp()}`). No confundir con `consulta/`, que es el formulario.
+- `templates/fragments/layout.html` tiene las piezas compartidas: `head(titulo, descripcion)`, `encabezado`, `cabecera(etiqueta, titulo, bajada)`, `logo`, `isotipo(clase)`, `icono-whatsapp`, `cta`, `tarjeta(p)` y `pie`. Diseñar primero para celular.
+- Imágenes: versión `.webp` + `.jpg` de respaldo (`<picture>`), optimizadas y sin metadatos de ubicación. Los originales no se commitean.
 - `src/main/frontend/main.css` — entrada de Tailwind v4; los tokens de marca van en el bloque `@theme`. El CSS compilado (`static/css/main.css`) se genera en el build y **no se commitea**.
 - `src/main/resources/db/migration/` — migraciones Flyway `V<n>__descripcion.sql`. **Nunca editar una migración ya mergeada a `main`**; crear una nueva. Si los dos crean la misma versión `V<n>` en ramas distintas, quien mergea segundo renumera la suya.
 - El esquema lo define solo Flyway (`ddl-auto=validate`).
