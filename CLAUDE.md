@@ -107,6 +107,44 @@ Requisitos: Java 21, Docker Desktop **abierto** (la base local y los tests usan 
 - La app corre en **UTC** (fechas guardadas en UTC; convertir a hora argentina solo al mostrar).
 - Todo endpoint o página nueva lleva su test (`@WebMvcTest` para controladores; `@SpringBootTest` + Testcontainers cuando toca la base).
 
+### Arquitectura en capas (regla para todo el código)
+
+El código se organiza **por funcionalidad** (`com.chi2.web.<funcionalidad>`, ej: `consulta`, `proyecto`) y, dentro de cada una, **en capas**:
+
+| Capa | Clase | Responsabilidad | No hace |
+|---|---|---|---|
+| Controller | `XxxController` (páginas Thymeleaf) · `api/XxxApiController` (REST, bajo `/api/...`) | Recibe el pedido HTTP, valida el DTO de entrada (`@Valid`), llama al service y devuelve la vista o el DTO de salida. | Lógica de negocio, acceso a repositorios, manejo de entidades. |
+| Service | `XxxService` | Lógica de negocio, reglas y transacciones (`@Transactional`). Recibe y devuelve DTOs o tipos de dominio. | Conocer HTTP (`HttpServletRequest`, `Model`, códigos de estado). |
+| Repository | `XxxRepository` (Spring Data JPA) | Acceso a datos. Consultas derivadas o `@Query`. | Lógica de negocio. |
+| Entity | `Xxx` (`@Entity`) | Modelo persistido, con su estado e invariantes. | Salir de la capa de service: **nunca** se expone en una vista ni en la API. |
+| DTO | `XxxForm` / `XxxRequest` (entrada) · `XxxResponse` (salida) | `record` de Java con Bean Validation. Es el contrato con la vista o la API. | Lógica. |
+| Mapper | `XxxMapper` | Convierte entre entidad y DTO, a mano (sin librerías de mapeo). | Lógica de negocio. |
+
+- **Las dependencias van en una sola dirección:** controller → service → repository → entity. Nunca al revés ni salteando capas (un controller no usa un repository).
+- Lo que se conecta con el exterior (mail, servicios externos, reloj) va detrás de una **interfaz** propia del dominio (ej: `NotificadorConsultas`), con su implementación aparte (ej: `NotificadorConsultasMail`).
+- Errores: excepciones de dominio propias (ej: `LimiteDeConsultasExcedidoException`), traducidas a HTTP en un `@RestControllerAdvice` con `ProblemDetail`, no con `try/catch` en cada controller.
+- Configuración en records `@ConfigurationProperties`, no `@Value` sueltos.
+- Si el contenido es fijo y no hay base (como `CatalogoProyectos`), la clase cumple el rol de repository y se respeta el mismo flujo.
+
+### Principios de diseño
+
+**SOLID**, aplicado así en este proyecto:
+
+- **S (responsabilidad única):** una clase, un motivo para cambiar. Ej: `ConsultaService` registra la consulta; el armado del mail vive en otra clase.
+- **O (abierto/cerrado):** se extiende sumando implementaciones, no editando las existentes. Ej: avisar por WhatsApp sería una nueva implementación de `NotificadorConsultas`.
+- **L (sustitución de Liskov):** toda implementación de una interfaz respeta su contrato; los tests de la interfaz pasan con cualquier implementación.
+- **I (segregación de interfaces):** interfaces chicas y específicas, no "servicios dios".
+- **D (inversión de dependencias):** las capas de arriba dependen de abstracciones. **Inyección por constructor** con campos `final`; nada de `@Autowired` en campos. Inyectar `java.time.Clock` en vez de llamar a `Instant.now()`, para poder testear fechas.
+
+**Además:**
+
+- **KISS y YAGNI:** la solución más simple que cumpla la especificación. No crear interfaces "por las dudas": solo en los límites con lo externo o cuando hay más de una implementación real.
+- **DRY:** una regla de negocio vive en un solo lugar (ej: el formulario web y la API usan el mismo service).
+- **Nombres del dominio en español** (`Consulta`, `registrar`, `estadoAviso`), consistentes con los documentos de `docs/`.
+- **Métodos cortos y con nombre que diga qué hacen.** Si un comentario explica *qué* hace un bloque, ese bloque es un método.
+- **Sin lógica en las plantillas:** Thymeleaf solo muestra lo que le prepara el controller.
+- **Tests por capa:** `@WebMvcTest` con el service mockeado para controllers; tests unitarios para services y mappers; `@DataJpaTest` o `@SpringBootTest` + Testcontainers para repositories y flujos completos.
+
 ## 9. Decisiones tomadas
 
 - El sitio público y el área de clientes son partes separadas.

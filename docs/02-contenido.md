@@ -107,7 +107,9 @@ Van como casos, con problema, solución, tecnologías y resultado. Son la prueba
 | Rubro del negocio | No |
 | Contanos qué necesitás | Sí |
 
-**Texto junto al botón:** "Respondemos en 24 horas hábiles. Usamos tus datos solo para responderte."
+**Texto junto al botón:** "Respondemos en 24 horas hábiles. Usamos tus datos solo para responderte y los borramos a los 3 meses."
+
+El detalle completo del formulario (validaciones, mensajes de error y de éxito) está en `docs/03-formulario-contacto.md`.
 
 ---
 
