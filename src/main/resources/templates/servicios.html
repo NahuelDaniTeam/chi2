@@ -1,11 +1,41 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/layout :: head('Servicios', 'Qué hace CHI2 y con qué rubros trabaja.')}"></head>
+<head th:replace="~{fragments/layout :: head('Servicios', 'Sistemas a medida para negocios que hoy se organizan con cuadernos, planillas o grupos de WhatsApp. La primera charla es gratis.')}"></head>
 <body class="bg-fondo text-tinta antialiased">
 <header th:replace="~{fragments/layout :: encabezado}"></header>
 <main class="mx-auto max-w-5xl px-4 py-16">
 	<h1 class="text-4xl font-bold tracking-tight sm:text-6xl">Servicios</h1>
-	<p class="mt-6 max-w-2xl text-lg text-tenue">[PENDIENTE: qué hacemos]</p>
+	<p class="mt-6 max-w-2xl text-lg text-tenue">Hacemos sistemas a medida para negocios que hoy se organizan con cuadernos, planillas o grupos de WhatsApp. No partimos de una aplicación genérica: empezamos por entender cómo trabajás y diseñamos la herramienta a partir de eso.</p>
+
+	<!-- docs/02-contenido.md §3 -->
+	<h2 class="mt-16 text-sm font-medium uppercase tracking-widest text-tenue">Cómo trabajamos</h2>
+	<ol class="mt-8 grid gap-8 sm:grid-cols-2">
+		<li>
+			<p class="text-sm text-tenue">1</p>
+			<h3 class="mt-1 text-xl font-bold">Charlamos</h3>
+			<p class="mt-2 text-tenue">Nos contás qué te pasa y qué querés mejorar. La primera charla es gratis.</p>
+		</li>
+		<li>
+			<p class="text-sm text-tenue">2</p>
+			<h3 class="mt-1 text-xl font-bold">Relevamos</h3>
+			<p class="mt-2 text-tenue">Vemos cómo trabaja tu negocio hoy: procesos, tiempos, quién hace qué.</p>
+		</li>
+		<li>
+			<p class="text-sm text-tenue">3</p>
+			<h3 class="mt-1 text-xl font-bold">Te proponemos</h3>
+			<p class="mt-2 text-tenue">Te mostramos qué haríamos, en qué orden y cuánto llevaría.</p>
+		</li>
+		<li>
+			<p class="text-sm text-tenue">4</p>
+			<h3 class="mt-1 text-xl font-bold">Construimos y te mostramos avances</h3>
+			<p class="mt-2 text-tenue">Vas viendo el sistema mientras lo hacemos y opinás.</p>
+		</li>
+		<li>
+			<p class="text-sm text-tenue">5</p>
+			<h3 class="mt-1 text-xl font-bold">Lo ponemos en marcha y te acompañamos</h3>
+			<p class="mt-2 text-tenue">Te ayudamos a empezar a usarlo y te damos soporte después de la entrega.</p>
+		</li>
+	</ol>
 
 	<h2 class="mt-16 text-sm font-medium uppercase tracking-widest text-tenue">Con quién trabajamos</h2>
 	<ul class="mt-6 grid gap-4 text-lg sm:grid-cols-2">

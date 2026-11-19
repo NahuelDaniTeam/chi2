@@ -130,10 +130,17 @@ _(nada por ahora)_
 - **Dónde:** `docs/01-vision-alcance.md` §6.
 - cargado por Nahuel, 2026-11-18
 
+### 15. Formulario de contacto
+- **Contexto:** es la acción secundaria del sitio (la principal es WhatsApp) y entra en la v1 (`docs/01-vision-alcance.md` §6). La página `/contacto` hoy tiene un recuadro `[PENDIENTE]`. Ya está decidido: guarda la consulta en PostgreSQL y avisa por mail a los dos; si el mail falla, la consulta no se pierde; protección liviana contra spam (campo trampa y límite de envíos); aviso "Usamos tus datos solo para responderte". Los campos están en `docs/02-contenido.md` §6.
+- **Qué entregar:** el formulario funcionando en `/contacto`, con migración Flyway, envío de mail, validaciones y tests. Para probar el mail en producción hace falta el pendiente 8 (el mail que recibe las consultas).
+- **Dónde:** código en `src/main/java/com/chi2/web/contacto/`, vista `contacto.html`. Lo agarra quien tenga tiempo primero: avisar al otro antes de arrancar para no duplicar.
+- cargado por Nahuel, 2026-11-18
+
 ---
 
 ## Hechos
 
+- [x] Pasar los textos de `docs/02-contenido.md` a las páginas y sumar los trabajos anteriores como casos. Lo que falta del contenido sigue marcado `[PENDIENTE]` en el sitio (pendientes 1 a 4, 6 y 7). · 2026-11-18
 - [x] Visión y alcance de la v1. (`docs/01-vision-alcance.md`) · 2026-11-18
 - [x] Elegir el titular: "Entendemos tu negocio y construimos la herramienta que necesita". · 2026-11-18
 - [x] Decidir si se nombra a EPEC: sí. · 2026-11-18
