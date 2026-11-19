@@ -19,7 +19,7 @@ documentos se contradicen, mandan los documentos y se corrige este archivo.
 - **Tono visual:** sobrio y editorial. Fondo claro, tipografía grande, casos contados como historias, sin elementos genéricos de plantilla.
 - **Paleta:** [PENDIENTE]
 - **Tipografías:** [PENDIENTE]
-- **Logo:** [PENDIENTE]
+- **Logo:** propuesta aplicada: isotipo **χ²** (chi cuadrado, de donde sale el nombre) + "CHI2" con el 2 en gris cálido `#a8a29e`. Versiones: horizontal `χ² | CHI2` (encabezado), apilada con "chi cuadrado" (pie) y cuadrado oscuro (favicon `static/favicon.svg` e íconos PNG). El isotipo es el fragmento `isotipo(clase)` de `fragments/layout.html`.
 
 ## 2. Presentación
 

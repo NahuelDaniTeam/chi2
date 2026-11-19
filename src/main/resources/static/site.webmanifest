@@ -1,0 +1,11 @@
+{
+  "name": "CHI2 · Sistemas a medida",
+  "short_name": "CHI2",
+  "icons": [
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/icono-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#f7f4ee",
+  "background_color": "#f7f4ee",
+  "display": "browser"
+}
