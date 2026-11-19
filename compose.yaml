@@ -7,3 +7,9 @@ services:
       - 'POSTGRES_USER=chi2'
     ports:
       - '5432'
+  # Atrapa los mails en desarrollo: se ven en http://localhost:8025 (docs/03-formulario-contacto.md §9.2)
+  mailpit:
+    image: 'axllent/mailpit:v1.21.8'
+    ports:
+      - '1025:1025'
+      - '8025:8025'

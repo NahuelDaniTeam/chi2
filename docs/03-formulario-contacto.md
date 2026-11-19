@@ -1,6 +1,6 @@
 # Especificación · Formulario de contacto
 
-**Estado:** borrador v0.1
+**Estado:** v0.2, implementado (ver §13 para los ajustes hechos al programarlo)
 **Última actualización:** 2026-11-18
 **Referencias:** `docs/01-vision-alcance.md` §6 · `docs/02-contenido.md` §6 · `PENDIENTES.md` #15
 
@@ -51,9 +51,9 @@ Visitante envía el formulario
   │
   ├─ ¿El campo trampa vino lleno? ── sí ─▶ responde "éxito" y no guarda nada (§6)
   │
-  ├─ ¿La IP superó el límite? ─────── sí ─▶ 429 · "Recibimos muchas consultas desde tu conexión..."
-  │
   ├─ ¿La validación falla? ────────── sí ─▶ vuelve el formulario con errores y lo escrito (§8)
+  │
+  ├─ ¿La IP superó el límite? ─────── sí ─▶ 429 · "Recibimos muchas consultas desde tu conexión..."
   │
   ▼
 Guarda la consulta (estado_aviso = PENDIENTE)   ◀── a partir de acá la consulta no se pierde
@@ -68,6 +68,8 @@ Visitante ve: "¡Listo! Recibimos tu consulta. Respondemos en 24 horas hábiles.
 ```
 
 **El visitante ve éxito aunque el mail falle.** La consulta ya está guardada y el reintento es asunto nuestro.
+
+La validación va antes del límite porque la hace el controller con `@Valid` (`CLAUDE.md` §8). Consecuencia: los envíos con errores **no** cuentan para el límite por IP; solo cuentan los que se guardan.
 
 ### 4.1. Reintentos
 
@@ -187,18 +189,30 @@ Si al momento de programarlo ya existe otra `V2` en `main`, se renumera según l
 
 | Propiedad | Variable de entorno | Valor |
 |---|---|---|
-| `spring.mail.host` | — | `smtp.gmail.com` |
-| `spring.mail.port` | — | `587`, con STARTTLS |
+| `spring.mail.host` | `CHI2_MAIL_HOST` | Producción: `smtp.gmail.com`. Por defecto `127.0.0.1` (Mailpit) |
+| `spring.mail.port` | `CHI2_MAIL_PORT` | Producción: `587`. Por defecto `1025` (Mailpit) |
+| `mail.smtp.auth` / `starttls.enable` / `starttls.required` | `CHI2_MAIL_SEGURO` | Producción: `true`. Por defecto `false` (Mailpit no usa TLS ni clave) |
 | `spring.mail.username` | `CHI2_MAIL_USUARIO` | Cuenta Gmail remitente |
 | `spring.mail.password` | `CHI2_MAIL_CLAVE` | Contraseña de aplicación de Gmail, **nunca en el repo** |
 | `spring.mail.properties.mail.smtp.connectiontimeout` / `timeout` / `writetimeout` | — | `5000` ms |
 | `chi2.consultas.destinatarios` | `CHI2_CONSULTAS_DESTINATARIOS` | Mails separados por coma, **nunca en el repo** |
+| `chi2.consultas.remitente` | `CHI2_MAIL_USUARIO` | Dirección "De" del aviso. Por defecto `sitio@chi2.local` |
 | `chi2.consultas.limite-por-hora` | — | `5` |
 | `chi2.consultas.retencion` | — | `P3M` |
 
 - **Dependencia nueva:** `spring-boot-starter-mail`. Además, hay que agregar `@EnableScheduling`.
 - **Desarrollo local:** sumar **Mailpit** a `compose.yaml`. Atrapa los mails y los muestra en `http://localhost:8025`, así nadie manda mails reales mientras programa.
 - **Sin destinatarios configurados:** la app arranca igual, pero el aviso queda `PENDIENTE` y se deja un log `WARN`. Así se puede programar sin tener todo configurado.
+
+## 13. Ajustes hechos al programarlo
+
+- **Orden del flujo (§4):** validación antes del límite por IP; los envíos inválidos no cuentan para el límite.
+- **Configuración del mail (§9.2):** por defecto apunta a Mailpit, para que nadie mande mails reales en desarrollo ni necesite credenciales. Producción se configura entera por variables de entorno. Se usa `127.0.0.1` y no `localhost`: en Windows, `localhost` resolvía primero a IPv6 y la respuesta de Mailpit superaba el timeout de 5 s.
+- **Sin chequeo de salud del mail:** `management.health.mail.enabled=false`. Si el SMTP falla, las consultas se guardan y se reintentan; el sitio no tiene que figurar como caído en `/actuator/health` (el hosting podría reiniciarlo).
+- **Sesión solo por cookie:** `server.servlet.session.tracking-modes=cookie`. El mensaje de éxito usa la sesión (flash attribute) y, sin esto, Tomcat agregaba `;jsessionid=` a la URL.
+- **JSON malformado en la API:** responde `400` con `ProblemDetail` y sin detalles internos.
+- **Aviso "al menos una vez":** si el servidor de mail recibe el aviso pero la confirmación no llega a tiempo, la consulta queda pendiente y el reintento manda el aviso de nuevo. Puede llegar un mail duplicado; se acepta, porque es preferible a perder una consulta.
+- **Clases extra respecto de §9.3:** `DatosConsulta` (interfaz común de `ConsultaForm` y `ConsultaRequest`, para que el service tenga una sola entrada), `AvisoConsultas` (intento de aviso y reglas de estado, compartido por el registro y el reintento), `MensajeAvisoConsulta` (arma el texto del mail), `ContactoValido` (validación de "WhatsApp o mail") y `ConfiguracionGeneral` (`Clock` y `@EnableScheduling`).
 
 ### 9.3. Diseño de clases
 

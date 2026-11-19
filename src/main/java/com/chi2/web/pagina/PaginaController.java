@@ -36,9 +36,4 @@ public class PaginaController {
 		return "quienes-somos";
 	}
 
-	@GetMapping("/contacto")
-	public String contacto() {
-		return "contacto";
-	}
-
 }

@@ -93,6 +93,9 @@ Requisitos: Java 21, Docker Desktop **abierto** (la base local y los tests usan 
 | Levantar la app (http://localhost:8080) | `./mvnw spring-boot:run` — arranca Postgres solo vía `compose.yaml` |
 | Build completo + todos los tests | `./mvnw verify` |
 | Recompilar CSS mientras se editan plantillas | `npm run watch:css` (en otra terminal, con la app corriendo) |
+| Ver los mails del formulario de contacto | http://localhost:8025 (Mailpit, arranca con `compose.yaml`). Para que lleguen avisos, levantar la app con `CHI2_CONSULTAS_DESTINATARIOS=a@prueba.test,b@prueba.test` |
+
+Si Postgres ya estaba corriendo de antes, Spring Boot no levanta los servicios nuevos de `compose.yaml`: en ese caso, `docker compose up -d`.
 
 ### Estructura y convenciones
 
