@@ -6,6 +6,9 @@
 	<title th:text="${titulo} + ' · CHI2'">CHI2</title>
 	<meta name="description" th:content="${descripcion}">
 	<meta name="theme-color" content="#f7f4ee">
+	<link rel="icon" th:href="@{/favicon.svg}" type="image/svg+xml">
+	<link rel="apple-touch-icon" th:href="@{/apple-touch-icon.png}">
+	<link rel="manifest" th:href="@{/site.webmanifest}">
 	<!-- Tipografías provisorias (PENDIENTES.md 10) -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,6 +16,23 @@
 	<link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
 <body>
+
+<!-- Isotipo χ² (logo de CHI2). Toma el color del texto; el "2" va en gris cálido. -->
+<svg th:fragment="isotipo(clase)" th:class="${clase}" viewBox="10 11 44 41" fill="none" stroke-linecap="round" aria-hidden="true">
+	<g transform="translate(-3 0)">
+		<path d="M16 17C22 17 25 24 30 33S38 49 44 49" stroke="currentColor" stroke-width="4.5"/>
+		<path d="M17 48 41 18" stroke="currentColor" stroke-width="2.2"/>
+		<path d="M45.5 17.5C45.5 14.8 48 13.5 50.5 13.8 52.8 14.1 54 15.8 53.5 17.8 53 19.8 49.5 22 45.5 25.5H54"
+		      stroke="#a8a29e" stroke-width="2.2" stroke-linejoin="round"/>
+	</g>
+</svg>
+
+<!-- Logo completo: χ² | CHI2 -->
+<a th:fragment="logo" th:href="@{/}" class="flex items-center gap-3 text-tinta" aria-label="CHI2, inicio">
+	<svg th:replace="~{fragments/layout :: isotipo('h-8 w-auto')}"></svg>
+	<span class="h-6 w-px bg-linea" aria-hidden="true"></span>
+	<span class="font-display text-[1.7rem] leading-none tracking-wide">CHI<em class="text-[#a8a29e]">2</em></span>
+</a>
 
 <!-- Ícono de WhatsApp (SVG en línea, sin dependencias) -->
 <svg th:fragment="icono-whatsapp" class="size-5 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -22,9 +42,7 @@
 <!-- Encabezado: marca, navegación y la acción principal (WhatsApp) siempre visible -->
 <header th:fragment="encabezado" class="sticky top-0 z-20 border-b border-linea/80 bg-fondo/85 backdrop-blur">
 	<nav class="contenedor flex flex-wrap items-center justify-between gap-x-8 gap-y-2 py-4">
-		<a th:href="@{/}" class="font-display text-3xl leading-none tracking-tight" aria-label="CHI2, inicio">
-			CHI<span class="text-acento">2</span>
-		</a>
+		<a th:replace="~{fragments/layout :: logo}"></a>
 		<a th:href="${contacto.linkWhatsapp()}"
 		   class="inline-flex items-center gap-2 rounded-full bg-tinta px-4 py-2 text-sm font-medium text-fondo transition hover:bg-acento sm:order-last">
 			<svg th:replace="~{fragments/layout :: icono-whatsapp}"></svg>
@@ -77,9 +95,14 @@
 
 <footer th:fragment="pie" class="mt-24 border-t border-linea">
 	<div class="contenedor grid gap-10 py-14 sm:grid-cols-[2fr_1fr_1fr]">
+		<!-- Logo apilado: χ², CHI2 y "chi cuadrado" -->
 		<div>
-			<a th:href="@{/}" class="font-display text-4xl tracking-tight">CHI<span class="text-acento">2</span></a>
-			<p class="mt-3 max-w-xs text-sm leading-relaxed text-tenue">Sistemas a medida para negocios de toda Argentina.</p>
+			<a th:href="@{/}" class="inline-flex flex-col items-start text-tinta" aria-label="CHI2, inicio">
+				<svg th:replace="~{fragments/layout :: isotipo('h-14 w-auto')}"></svg>
+				<span class="mt-3 font-display text-5xl leading-none tracking-wide">CHI<em class="text-[#a8a29e]">2</em></span>
+				<span class="mt-2 text-[0.65rem] font-medium tracking-[0.3em] text-tenue uppercase">Chi cuadrado</span>
+			</a>
+			<p class="mt-6 max-w-xs text-sm leading-relaxed text-tenue">Sistemas a medida para negocios de toda Argentina.</p>
 		</div>
 		<div>
 			<p class="text-xs font-medium tracking-[0.2em] text-tenue uppercase">Sitio</p>

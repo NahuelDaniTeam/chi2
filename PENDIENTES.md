@@ -98,7 +98,7 @@ _(nada por ahora)_
 - cargado por Nahuel, 2026-11-18
 
 ### 10. Paleta, tipografías y logo
-- **Contexto:** el tono visual decidido es sobrio y editorial: fondo claro, tipografía grande y nada que parezca de plantilla. Hay una **propuesta provisoria ya aplicada** en el sitio: títulos en Instrument Serif, texto en Inter, fondo marfil `#f7f4ee`, tinta `#191714` y acento terracota `#b5532c`. Se puede confirmar o reemplazar: los colores están en el bloque `@theme` de `src/main/frontend/main.css` y las fuentes en el `<link>` de `fragments/layout.html`. El logo hoy es solo el texto "CHI2" con el 2 en el color de acento.
+- **Contexto:** el tono visual decidido es sobrio y editorial: fondo claro, tipografía grande y nada que parezca de plantilla. Hay una **propuesta provisoria ya aplicada** en el sitio: títulos en Instrument Serif, texto en Inter, fondo marfil `#f7f4ee`, tinta `#191714` y acento terracota `#b5532c`. Se puede confirmar o reemplazar: los colores están en el bloque `@theme` de `src/main/frontend/main.css` y las fuentes en el `<link>` de `fragments/layout.html`. Logo: hay una **propuesta aplicada** basada en los bocetos de Nahuel: el isotipo χ² (chi cuadrado) + "CHI2" con el 2 en gris cálido; ver `CLAUDE.md` §1.
 - **Qué entregar:**
   - 1 o 2 tipografías de Google Fonts;
   - la paleta: fondo, texto, texto secundario y un color de acento;
@@ -140,6 +140,7 @@ _(nada por ahora)_
 
 ## Hechos
 
+- [x] Logo χ² aplicado como propuesta: encabezado, pie, favicon e íconos para celular. · 2026-11-18
 - [x] Rediseño visual con paleta y tipografías provisorias, revisado en celular y escritorio. Los textos nuevos que sumó están en `docs/02-contenido.md` §7, como propuesta. · 2026-11-18
 - [x] Fotos del equipo en "Quiénes somos" (recortadas 4:5, optimizadas y sin datos de ubicación, en `static/img/equipo/`). · 2026-11-18
 - [x] Pasar los textos de `docs/02-contenido.md` a las páginas y sumar los trabajos anteriores como casos. Lo que falta del contenido sigue marcado `[PENDIENTE]` en el sitio (pendientes 1 a 4, 6 y 7). · 2026-11-18
