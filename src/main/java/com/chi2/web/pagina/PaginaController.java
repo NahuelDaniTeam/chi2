@@ -1,6 +1,9 @@
 package com.chi2.web.pagina;
 
+import com.chi2.web.proyecto.CatalogoProyectos;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
@@ -10,19 +13,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PaginaController {
 
+	private final CatalogoProyectos catalogo;
+
+	public PaginaController(CatalogoProyectos catalogo) {
+		this.catalogo = catalogo;
+	}
+
 	@GetMapping("/")
-	public String inicio() {
+	public String inicio(Model model) {
+		model.addAttribute("proyectos", catalogo.todos());
 		return "inicio";
 	}
 
 	@GetMapping("/servicios")
 	public String servicios() {
 		return "servicios";
-	}
-
-	@GetMapping("/casos")
-	public String casos() {
-		return "casos";
 	}
 
 	@GetMapping("/quienes-somos")

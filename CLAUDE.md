@@ -5,6 +5,10 @@ Sitio público y contenedor de la marca. Presenta quiénes somos y qué hacemos,
 **Estado:** esqueleto inicial. Pendiente de completar por el equipo.
 **Última actualización:** 2026-11-18
 
+**Documento de referencia:** `docs/01-vision-alcance.md` (visión, alcance de la v1, principios de diseño,
+riesgos y criterio de "v1 terminada"). Todo lo que se construya tiene que respetarlo; si este archivo y ese
+documento se contradicen, manda el documento y se corrige este archivo.
+
 ---
 
 ## 1. Identidad
@@ -36,7 +40,7 @@ Sitio público y contenedor de la marca. Presenta quiénes somos y qué hacemos,
 
 ## 5. Proyectos (casos)
 
-Cada caso se presenta con problema, solución, tecnologías y resultado. Los proyectos de facultad se rotulan como "proyecto académico".
+En la v1 se muestran como **proyectos "en desarrollo"** (barbería y gestión de tareas), cada uno con problema, solución propuesta, tecnologías y estado. Pasan a "caso" cuando están terminados. Los proyectos de facultad se rotulan como "proyecto académico".
 
 | Caso | Tipo | Estado |
 |---|---|---|
@@ -47,12 +51,14 @@ Solo se muestran como clientes los proyectos reales cuyo cliente haya dado permi
 
 ## 6. Estructura de páginas
 
-1. **Inicio:** titular, servicios destacados y dos o tres casos.
+1. **Inicio:** titular, servicios destacados, proyectos en desarrollo y llamado a la acción.
 2. **Servicios:** qué hacemos y con qué tipo de negocio trabajamos.
-3. **Casos:** lista y detalle de cada caso.
+3. **Proyectos:** lista y página de detalle de cada proyecto.
 4. **Quiénes somos:** equipo y presentación general.
-5. **Contacto:** formulario o datos de contacto.
-6. **Área de clientes:** enlace al portal de acceso (a futuro, no en la primera versión).
+5. **Contacto:** botón principal a WhatsApp y formulario como alternativa.
+6. **Área de clientes:** fuera de la v1.
+
+**Acción principal en todo el sitio:** escribir por WhatsApp (el formulario es la secundaria), siempre con el compromiso "Respondemos en 24 horas hábiles".
 
 ## 7. Contacto
 
@@ -86,8 +92,10 @@ Requisitos: Java 21, Docker Desktop **abierto** (la base local y los tests usan 
 ### Estructura y convenciones
 
 - `src/main/java/com/chi2/web/pagina/` — controladores de páginas públicas (Thymeleaf).
+- `src/main/java/com/chi2/web/proyecto/` — proyectos del sitio. El contenido se edita en `CatalogoProyectos` (no hay panel de administración en la v1).
+- `src/main/java/com/chi2/web/contacto/` — datos de contacto (`chi2.contacto.*` en `application.properties`, o variables `CHI2_CONTACTO_WHATSAPP` / `CHI2_CONTACTO_EMAIL`). Las vistas los reciben como `contacto` (ej: `${contacto.linkWhatsapp()}`).
 - `src/main/java/com/chi2/web/api/` — `@RestController` de la API REST, siempre bajo `/api/...`.
-- `src/main/resources/templates/` — vistas; `fragments/layout.html` tiene `head`, `encabezado` y `pie` compartidos.
+- `src/main/resources/templates/` — vistas; `fragments/layout.html` tiene `head(titulo, descripcion)`, `encabezado`, `cta`, `tarjeta(p)` y `pie` compartidos. Diseñar primero para celular.
 - `src/main/frontend/main.css` — entrada de Tailwind v4; los tokens de marca van en el bloque `@theme`. El CSS compilado (`static/css/main.css`) se genera en el build y **no se commitea**.
 - `src/main/resources/db/migration/` — migraciones Flyway `V<n>__descripcion.sql`. **Nunca editar una migración ya mergeada a `main`**; crear una nueva. Si los dos crean la misma versión `V<n>` en ramas distintas, quien mergea segundo renumera la suya.
 - El esquema lo define solo Flyway (`ddl-auto=validate`).

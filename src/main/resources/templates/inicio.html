@@ -1,11 +1,48 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/layout :: head('Inicio')}"></head>
+<head th:replace="~{fragments/layout :: head('Sistemas a medida para negocios', 'CHI2 desarrolla sistemas a medida para barberías, peluquerías y negocios chicos de Argentina.')}"></head>
 <body class="bg-fondo text-tinta antialiased">
 <header th:replace="~{fragments/layout :: encabezado}"></header>
-<main class="mx-auto max-w-5xl px-4 py-16">
-	<h1 class="text-4xl font-bold tracking-tight sm:text-6xl">CHI2</h1>
-	<p class="mt-6 max-w-2xl text-lg text-tenue">[PENDIENTE: titular, servicios destacados y dos o tres casos]</p>
+<main class="mx-auto max-w-5xl px-4">
+
+	<!-- Primera pantalla: resultado, para quién y siguiente paso -->
+	<section class="py-16 sm:py-24">
+		<h1 class="max-w-3xl text-4xl font-bold tracking-tight sm:text-6xl">[PENDIENTE: titular, qué hacemos y para quién]</h1>
+		<p class="mt-6 max-w-2xl text-lg text-tenue">[PENDIENTE: mensaje de apoyo]</p>
+		<div class="mt-8 flex flex-wrap items-center gap-4">
+			<a th:href="${contacto.linkWhatsapp()}"
+			   class="rounded-full bg-tinta px-6 py-3 font-medium text-fondo hover:opacity-90">Escribinos por WhatsApp</a>
+			<span class="text-sm text-tenue" th:text="${contacto.tiempoRespuesta()}">Respondemos en 24 horas hábiles.</span>
+		</div>
+	</section>
+
+	<!-- Servicios destacados -->
+	<section class="border-t border-black/10 py-16">
+		<h2 class="text-sm font-medium uppercase tracking-widest text-tenue">Qué hacemos</h2>
+		<div class="mt-8 grid gap-8 sm:grid-cols-2">
+			<div>
+				<h3 class="text-2xl font-bold">Sistemas a medida</h3>
+				<p class="mt-2 text-tenue">[PENDIENTE: descripción en una o dos frases]</p>
+			</div>
+			<div>
+				<h3 class="text-2xl font-bold">[PENDIENTE: otro servicio]</h3>
+				<p class="mt-2 text-tenue">[PENDIENTE]</p>
+			</div>
+		</div>
+		<a th:href="@{/servicios}" class="mt-8 inline-block font-medium underline underline-offset-4">Ver servicios</a>
+	</section>
+
+	<!-- Proyectos en desarrollo: prueba de capacidad cerca de la promesa -->
+	<section class="border-t border-black/10 py-16">
+		<h2 class="text-sm font-medium uppercase tracking-widest text-tenue">En qué estamos trabajando</h2>
+		<div class="mt-8 grid gap-6 sm:grid-cols-2">
+			<th:block th:each="p : ${proyectos}">
+				<a th:replace="~{fragments/layout :: tarjeta(${p})}"></a>
+			</th:block>
+		</div>
+	</section>
+
+	<section th:replace="~{fragments/layout :: cta}"></section>
 </main>
 <footer th:replace="~{fragments/layout :: pie}"></footer>
 </body>
