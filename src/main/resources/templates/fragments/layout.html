@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(titulo, descripcion)">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title th:text="${titulo} + ' · CHI2'">CHI2</title>
+	<meta name="description" th:content="${descripcion}">
+	<link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+
+<!-- Encabezado: marca, navegación y la acción principal (WhatsApp) siempre visible -->
+<header th:fragment="encabezado" class="border-b border-black/10">
+	<nav class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-x-6 gap-y-3 px-4 py-5">
+		<a th:href="@{/}" class="text-xl font-bold tracking-tight">CHI2</a>
+		<a th:href="${contacto.linkWhatsapp()}"
+		   class="rounded-full bg-tinta px-4 py-2 text-sm font-medium text-fondo hover:opacity-90 sm:order-last">
+			Escribinos por WhatsApp
+		</a>
+		<ul class="flex w-full flex-wrap gap-x-6 gap-y-2 text-sm text-tenue sm:w-auto">
+			<li><a th:href="@{/servicios}" class="hover:text-tinta">Servicios</a></li>
+			<li><a th:href="@{/proyectos}" class="hover:text-tinta">Proyectos</a></li>
+			<li><a th:href="@{/quienes-somos}" class="hover:text-tinta">Quiénes somos</a></li>
+			<li><a th:href="@{/contacto}" class="hover:text-tinta">Contacto</a></li>
+		</ul>
+	</nav>
+</header>
+
+<!-- Llamado a la acción: WhatsApp (principal), formulario (secundaria) y compromiso de respuesta -->
+<section th:fragment="cta" class="mt-20 rounded-2xl border border-black/10 p-8 sm:p-12">
+	<h2 class="text-2xl font-bold tracking-tight sm:text-3xl">¿Querés ordenar tu negocio?</h2>
+	<p class="mt-3 text-tenue">Contanos cómo trabajás hoy y vemos juntos qué te conviene.</p>
+	<div class="mt-6 flex flex-wrap items-center gap-4">
+		<a th:href="${contacto.linkWhatsapp()}"
+		   class="rounded-full bg-tinta px-6 py-3 font-medium text-fondo hover:opacity-90">Escribinos por WhatsApp</a>
+		<a th:href="@{/contacto}" class="font-medium underline underline-offset-4">o dejanos tu consulta</a>
+	</div>
+	<p class="mt-4 text-sm text-tenue" th:text="${contacto.tiempoRespuesta()}">Respondemos en 24 horas hábiles.</p>
+</section>
+
+<!-- Tarjeta de proyecto (la usan inicio y proyectos/lista) -->
+<a th:fragment="tarjeta(p)" th:href="@{/proyectos/{slug}(slug=${p.slug})}"
+   class="block rounded-2xl border border-black/10 p-6 hover:border-black/30">
+	<span class="inline-block rounded-full border border-black/20 px-3 py-1 text-xs font-medium"
+	      th:text="${p.estado.etiqueta}">En desarrollo</span>
+	<h3 class="mt-4 text-xl font-bold" th:text="${p.nombre}">Proyecto</h3>
+	<p class="mt-1 text-sm text-tenue" th:text="${p.rubro}">Rubro</p>
+	<p class="mt-4 text-tenue" th:text="${p.resumen}">Resumen</p>
+</a>
+
+<footer th:fragment="pie" class="mt-24 border-t border-black/10">
+	<div class="mx-auto flex max-w-5xl flex-wrap justify-between gap-4 px-4 py-8 text-sm text-tenue">
+		<span>© <span th:text="${#temporals.year(#temporals.createNow())}">2026</span> CHI2 · Sistemas a medida</span>
+		<a th:href="${contacto.linkWhatsapp()}" class="hover:text-tinta">WhatsApp</a>
+	</div>
+</footer>
+
+</body>
+</html>
