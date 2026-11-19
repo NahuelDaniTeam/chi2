@@ -200,6 +200,27 @@ Si al momento de programarlo ya existe otra `V2` en `main`, se renumera según l
 - **Desarrollo local:** sumar **Mailpit** a `compose.yaml`. Atrapa los mails y los muestra en `http://localhost:8025`, así nadie manda mails reales mientras programa.
 - **Sin destinatarios configurados:** la app arranca igual, pero el aviso queda `PENDIENTE` y se deja un log `WARN`. Así se puede programar sin tener todo configurado.
 
+### 9.3. Diseño de clases
+
+Sigue la arquitectura en capas y los principios de `CLAUDE.md` §8. Todo va en el paquete nuevo `com.chi2.web.consulta`, salvo el controller REST, que va en `api/`.
+
+| Capa | Clase | Qué hace |
+|---|---|---|
+| Controller (web) | `ConsultaController` | `POST /contacto`: valida `ConsultaForm`, llama a `ConsultaService` y redirige o vuelve con errores. |
+| Controller (REST) | `api/ConsultaApiController` | `POST /api/consultas`: valida `ConsultaRequest`, llama al mismo service y devuelve `ConsultaResponse`. |
+| DTO | `ConsultaForm`, `ConsultaRequest`, `ConsultaResponse` | Records con Bean Validation (las reglas de la §3). |
+| Mapper | `ConsultaMapper` | DTO → `Consulta`. Detecta `tipo_contacto` (§3.1). |
+| Service | `ConsultaService` | `registrar(...)`: guarda la consulta y pide el aviso. Es la única entrada de la lógica para las dos interfaces. |
+| Service | `ReintentoAvisosService` | Tarea `@Scheduled` de reintentos (§4.1). |
+| Service | `RetencionConsultasService` | Tarea `@Scheduled` de borrado a los 3 meses (§4.2). |
+| Service | `LimitadorConsultas` | Límite por IP en memoria (§6). Lanza `LimiteDeConsultasExcedidoException`. |
+| Puerto | `NotificadorConsultas` (interfaz) | `avisar(Consulta)`. El service depende de esta interfaz, no del mail. |
+| Adaptador | `NotificadorConsultasMail` | Implementación con `JavaMailSender`; arma el mail de la §7. |
+| Repository | `ConsultaRepository` | Spring Data JPA: pendientes de aviso y borrado por fecha. |
+| Entity | `Consulta`, `TipoContacto`, `EstadoAviso` | La tabla de la §9.1. Los métodos `marcarAvisada(Instant)` y `registrarFalloAviso(String)` aplican las reglas de estado. |
+| Config | `ConsultasProperties` | Record `@ConfigurationProperties("chi2.consultas")`. |
+| Errores | `ApiExceptionHandler` | `@RestControllerAdvice`: validación → 400 y límite → 429, con `ProblemDetail`. |
+
 ## 10. Criterios de aceptación
 
 Cada uno lleva al menos un test. Los que tocan la base usan `@SpringBootTest` con Testcontainers; los de controladores, `@WebMvcTest`.

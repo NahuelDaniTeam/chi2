@@ -59,6 +59,16 @@ Al completar un ítem se mueve a **Hechos** con la fecha. Los hechos de más de 
 - **Dónde:** `docs/02-contenido.md`.
 - cargado por Nahuel, 2026-11-18
 
+### 18. Pasar los links de tus proyectos ya realizados
+- **Contexto:** tus dos trabajos (seguimiento de camiones recolectores e imprenta) ya aparecen como casos en `/proyectos`, pero sin ningún link. Un link a algo que se pueda ver o probar es la prueba más fuerte que podemos dar. Hoy el modelo `Proyecto` (`src/main/java/com/chi2/web/proyecto/Proyecto.java`) no tiene campo para links: hay que sumarlo cuando estén.
+- **Qué entregar,** para cada proyecto, los links que existan y se puedan mostrar públicamente:
+  - **demo o sitio en funcionamiento;**
+  - **repositorio** (GitHub o similar), solo si es público o se puede hacer público sin exponer código ni datos del cliente;
+  - **video o capturas,** si no hay demo.
+  - Aclarar cuáles son públicos y cuáles son solo para mostrar en una reunión. Si un link deja ver datos o el nombre del cliente, aplica el pendiente 3 (permiso).
+- **Dónde:** pegarlos en `docs/02-contenido.md` §4, debajo de cada caso. Después se suma un campo `links` al modelo `Proyecto` y se cargan en `CatalogoProyectos`.
+- cargado por Nahuel, 2026-11-18
+
 ## Para Nahuel
 
 _(nada por ahora)_
@@ -133,7 +143,7 @@ _(nada por ahora)_
 ### 15. Formulario de contacto
 - **Contexto:** es la acción secundaria del sitio (la principal es WhatsApp) y entra en la v1 (`docs/01-vision-alcance.md` §6). La página `/contacto` hoy tiene un recuadro `[PENDIENTE]`. **Está todo especificado en `docs/03-formulario-contacto.md`:** campos y validaciones, flujo, endpoints (`POST /contacto` y `POST /api/consultas`), migración, aviso por Gmail SMTP a los dos, reintentos si el mail falla, anti-spam (campo trampa y 5 envíos por hora por IP), borrado a los 3 meses y 12 criterios de aceptación.
 - **Qué entregar:** el formulario funcionando según la especificación, con un test por criterio de aceptación (§10). Para programarlo no hace falta nada más, porque los mails se prueban con Mailpit en local. Para publicarlo hacen falta los pendientes 8 y 16.
-- **Dónde:** código en `src/main/java/com/chi2/web/contacto/`, vista `contacto.html`. Lo agarra quien tenga tiempo primero: avisar al otro antes de arrancar para no duplicar. Si algo de la especificación no cierra al programarlo, se corrige primero el documento.
+- **Dónde:** código en el paquete nuevo `src/main/java/com/chi2/web/consulta/` (diseño de clases en la especificación, §9.3), vista `contacto.html`. Lo agarra quien tenga tiempo primero: avisar al otro antes de arrancar para no duplicar. Si algo de la especificación no cierra al programarlo, se corrige primero el documento.
 - cargado por Nahuel, 2026-11-18
 
 ### 16. Cuenta Gmail para enviar los avisos del formulario
