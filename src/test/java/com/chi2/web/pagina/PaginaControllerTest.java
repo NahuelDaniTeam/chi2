@@ -30,8 +30,7 @@ class PaginaControllerTest {
 	@CsvSource({
 			"/, inicio",
 			"/servicios, servicios",
-			"/quienes-somos, quienes-somos",
-			"/contacto, contacto"
+			"/quienes-somos, quienes-somos"
 	})
 	void cadaPaginaMuestraWhatsappYElTiempoDeRespuesta(String ruta, String vista) throws Exception {
 		mvc.perform(get(ruta))

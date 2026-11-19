@@ -140,18 +140,12 @@ _(nada por ahora)_
 - **Dónde:** `docs/01-vision-alcance.md` §6.
 - cargado por Nahuel, 2026-11-18
 
-### 15. Formulario de contacto
-- **Contexto:** es la acción secundaria del sitio (la principal es WhatsApp) y entra en la v1 (`docs/01-vision-alcance.md` §6). La página `/contacto` hoy tiene un recuadro `[PENDIENTE]`. **Está todo especificado en `docs/03-formulario-contacto.md`:** campos y validaciones, flujo, endpoints (`POST /contacto` y `POST /api/consultas`), migración, aviso por Gmail SMTP a los dos, reintentos si el mail falla, anti-spam (campo trampa y 5 envíos por hora por IP), borrado a los 3 meses y 12 criterios de aceptación.
-- **Qué entregar:** el formulario funcionando según la especificación, con un test por criterio de aceptación (§10). Para programarlo no hace falta nada más, porque los mails se prueban con Mailpit en local. Para publicarlo hacen falta los pendientes 8 y 16.
-- **Dónde:** código en el paquete nuevo `src/main/java/com/chi2/web/consulta/` (diseño de clases en la especificación, §9.3), vista `contacto.html`. Lo agarra quien tenga tiempo primero: avisar al otro antes de arrancar para no duplicar. Si algo de la especificación no cierra al programarlo, se corrige primero el documento.
-- cargado por Nahuel, 2026-11-18
-
 ### 16. Cuenta Gmail para enviar los avisos del formulario
 - **Contexto:** el sitio manda los avisos de consultas por Gmail SMTP (`docs/03-formulario-contacto.md` §2). Hace falta una cuenta remitente. Recomendado: una cuenta nueva de CHI2 (por ejemplo `chi2.consultas@gmail.com`), no la personal de ninguno, para que no dependa de una sola persona. Gmail pide tener activada la verificación en dos pasos para generar una contraseña de aplicación.
 - **Qué entregar:**
   - la cuenta creada, con la verificación en dos pasos activa y los dos con acceso;
   - una contraseña de aplicación generada para el sitio.
-  - Las credenciales **no** van al repo: se cargan en el hosting como `CHI2_MAIL_USUARIO` y `CHI2_MAIL_CLAVE` y se comparten entre ustedes por un medio seguro, como un gestor de contraseñas.
+  - Las credenciales **no** van al repo: se cargan en el hosting como `CHI2_MAIL_USUARIO` y `CHI2_MAIL_CLAVE` y se comparten entre ustedes por un medio seguro, como un gestor de contraseñas. Además, en el hosting: `CHI2_MAIL_HOST=smtp.gmail.com`, `CHI2_MAIL_PORT=587` y `CHI2_MAIL_SEGURO=true` (`docs/03-formulario-contacto.md` §9.2).
 - **Dónde:** variables de entorno del hosting (pendiente 12). En el repo solo se anota qué cuenta es, en `CLAUDE.md` §7.
 - cargado por Nahuel, 2026-11-18
 
@@ -165,6 +159,7 @@ _(nada por ahora)_
 
 ## Hechos
 
+- [x] Formulario de contacto (pendiente 15): web y API, aviso por mail con reintentos, anti-spam, borrado a los 3 meses y los 12 criterios de aceptación con tests. Probado de punta a punta con Mailpit. Los ajustes respecto de la especificación están en `docs/03-formulario-contacto.md` §13. · 2026-11-18
 - [x] Logo χ² aplicado como propuesta: encabezado, pie, favicon e íconos para celular. · 2026-11-18
 - [x] Rediseño visual con paleta y tipografías provisorias, revisado en celular y escritorio. Los textos nuevos que sumó están en `docs/02-contenido.md` §7, como propuesta. · 2026-11-18
 - [x] Fotos del equipo en "Quiénes somos" (recortadas 4:5, optimizadas y sin datos de ubicación, en `static/img/equipo/`). · 2026-11-18

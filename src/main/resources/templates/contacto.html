@@ -10,9 +10,9 @@
 		<p class="mt-6 max-w-2xl text-lg leading-relaxed text-tenue">La forma más rápida es WhatsApp. Si preferís, dejanos tu consulta y te escribimos. La primera charla es gratis.</p>
 	</section>
 
-	<div class="grid gap-6 sm:grid-cols-2">
+	<div class="grid items-start gap-6 lg:grid-cols-[1fr_1.3fr]">
 		<!-- Acción principal -->
-		<section class="flex flex-col justify-between rounded-3xl bg-tinta p-8 text-fondo sm:p-10">
+		<section class="flex flex-col justify-between rounded-3xl bg-tinta p-8 text-fondo sm:p-10 lg:sticky lg:top-28">
 			<div>
 				<p class="etiqueta text-fondo/60">La más rápida</p>
 				<h2 class="titulo-display mt-6 text-4xl">Escribinos por WhatsApp</h2>
@@ -24,16 +24,95 @@
 			</a>
 		</section>
 
-		<!-- [PENDIENTE] Formulario (PENDIENTES.md 15): guarda en la base, avisa por mail a los dos (si el mail falla la
-		     consulta no se pierde), campos de docs/02-contenido.md §6, honeypot + límite de envíos. -->
-		<section class="rounded-3xl border border-dashed border-tinta/25 p-8 sm:p-10">
-			<p class="etiqueta">O dejanos tu consulta</p>
-			<h2 class="titulo-display mt-6 text-4xl">Formulario</h2>
-			<p class="mt-4"><span class="pendiente">[PENDIENTE: formulario de contacto]</span></p>
-			<p class="mt-8 text-sm text-tenue">Respondemos en 24 horas hábiles. Usamos tus datos solo para responderte.</p>
+		<!-- Formulario (docs/03-formulario-contacto.md §8) -->
+		<section class="rounded-3xl border border-linea bg-superficie p-8 sm:p-10" aria-labelledby="titulo-formulario">
+
+			<!-- Consulta enviada -->
+			<div th:if="${enviada}" role="status">
+				<p class="etiqueta">Consulta enviada</p>
+				<h2 id="titulo-formulario" class="titulo-display mt-6 text-4xl"
+				    th:text="${nombreEnviado != null} ? '¡Listo, ' + ${nombreEnviado} + '!' : '¡Listo!'">¡Listo!</h2>
+				<p class="mt-4 text-lg leading-relaxed text-tenue">Recibimos tu consulta. Respondemos en 24 horas hábiles.</p>
+				<p class="mt-8 text-sm text-tenue">¿Es urgente?</p>
+				<a th:href="${contacto.linkWhatsapp()}" class="btn-principal mt-3">
+					<svg th:replace="~{fragments/layout :: icono-whatsapp}"></svg>
+					Escribinos por WhatsApp
+				</a>
+			</div>
+
+			<!-- Formulario: HTML común, funciona sin JavaScript -->
+			<form th:unless="${enviada}" th:action="@{/contacto}" th:object="${consulta}" method="post"
+			      data-formulario-consulta novalidate>
+				<p class="etiqueta">O dejanos tu consulta</p>
+				<h2 id="titulo-formulario" class="titulo-display mt-6 text-4xl">Contanos qué necesitás</h2>
+
+				<p th:if="${errorGeneral}" th:text="${errorGeneral}" role="alert"
+				   class="mt-6 rounded-xl bg-acento/10 px-4 py-3 text-sm text-acento">Error</p>
+
+				<div class="mt-8 grid gap-6">
+					<div>
+						<label for="nombre" class="block text-sm font-medium">Nombre</label>
+						<input type="text" th:field="*{nombre}" autocomplete="name" maxlength="80"
+						       th:autofocus="${primerCampoConError == 'nombre'}"
+						       th:attr="aria-invalid=${#fields.hasErrors('nombre')},aria-describedby=${#fields.hasErrors('nombre')} ? 'nombre-error' : null"
+						       class="mt-2 block w-full rounded-xl border border-linea bg-fondo px-4 py-3 text-base outline-none transition focus:border-tinta aria-invalid:border-acento">
+						<p th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" id="nombre-error" class="mt-2 text-sm text-acento">Error</p>
+					</div>
+
+					<div>
+						<label for="contacto" class="block text-sm font-medium">WhatsApp o mail</label>
+						<input type="text" th:field="*{contacto}" autocomplete="email" inputmode="email" maxlength="120"
+						       th:autofocus="${primerCampoConError == 'contacto'}"
+						       th:attr="aria-invalid=${#fields.hasErrors('contacto')},aria-describedby=${#fields.hasErrors('contacto')} ? 'contacto-error' : null"
+						       class="mt-2 block w-full rounded-xl border border-linea bg-fondo px-4 py-3 text-base outline-none transition focus:border-tinta aria-invalid:border-acento">
+						<p th:if="${#fields.hasErrors('contacto')}" th:errors="*{contacto}" id="contacto-error" class="mt-2 text-sm text-acento">Error</p>
+					</div>
+
+					<div>
+						<label for="rubro" class="block text-sm font-medium">Rubro del negocio <span class="font-normal text-tenue">(opcional)</span></label>
+						<input type="text" th:field="*{rubro}" list="rubros" autocomplete="off" maxlength="80"
+						       th:autofocus="${primerCampoConError == 'rubro'}"
+						       th:attr="aria-invalid=${#fields.hasErrors('rubro')},aria-describedby=${#fields.hasErrors('rubro')} ? 'rubro-error' : null"
+						       class="mt-2 block w-full rounded-xl border border-linea bg-fondo px-4 py-3 text-base outline-none transition focus:border-tinta aria-invalid:border-acento">
+						<datalist id="rubros">
+							<option value="Barbería"></option>
+							<option value="Peluquería"></option>
+							<option value="Otro"></option>
+						</datalist>
+						<p th:if="${#fields.hasErrors('rubro')}" th:errors="*{rubro}" id="rubro-error" class="mt-2 text-sm text-acento">Error</p>
+					</div>
+
+					<div>
+						<label for="mensaje" class="block text-sm font-medium">Contanos qué necesitás</label>
+						<textarea th:field="*{mensaje}" rows="5" maxlength="2000"
+						          th:autofocus="${primerCampoConError == 'mensaje'}"
+						          th:attr="aria-invalid=${#fields.hasErrors('mensaje')},aria-describedby=${#fields.hasErrors('mensaje')} ? 'mensaje-error' : null"
+						          class="mt-2 block w-full rounded-xl border border-linea bg-fondo px-4 py-3 text-base outline-none transition focus:border-tinta aria-invalid:border-acento"></textarea>
+						<p th:if="${#fields.hasErrors('mensaje')}" th:errors="*{mensaje}" id="mensaje-error" class="mt-2 text-sm text-acento">Error</p>
+					</div>
+
+					<!-- Campo trampa (§6): fuera de pantalla, no type="hidden". Un humano no lo ve ni lo completa. -->
+					<div class="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
+						<label for="sitio_web">Sitio web (no completar)</label>
+						<input type="text" id="sitio_web" name="sitio_web" value="" tabindex="-1" autocomplete="off">
+					</div>
+				</div>
+
+				<button type="submit" class="btn-principal mt-8 w-full justify-center sm:w-auto">Enviar consulta</button>
+				<p class="mt-4 text-sm text-tenue">Respondemos en 24 horas hábiles. Usamos tus datos solo para responderte y los borramos a los 3 meses.</p>
+			</form>
 		</section>
 	</div>
 </main>
 <footer th:replace="~{fragments/layout :: pie}"></footer>
+
+<!-- Mejora opcional: evita el doble clic. Sin JavaScript el formulario funciona igual. -->
+<script>
+	document.querySelector('[data-formulario-consulta]')?.addEventListener('submit', (evento) => {
+		const boton = evento.target.querySelector('button[type="submit"]');
+		boton.disabled = true;
+		boton.textContent = 'Enviando…';
+	});
+</script>
 </body>
 </html>
