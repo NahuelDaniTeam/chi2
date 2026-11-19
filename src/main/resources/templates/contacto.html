@@ -1,23 +1,38 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/layout :: head('Contacto', 'Escribile a CHI2 por WhatsApp o dejá tu consulta.')}"></head>
-<body class="bg-fondo text-tinta antialiased">
+<body class="bg-fondo font-sans text-tinta antialiased">
 <header th:replace="~{fragments/layout :: encabezado}"></header>
-<main class="mx-auto max-w-5xl px-4 py-16">
-	<h1 class="text-4xl font-bold tracking-tight sm:text-6xl">Hablemos</h1>
-	<p class="mt-6 max-w-2xl text-lg text-tenue">La forma más rápida es WhatsApp. Si preferís, dejanos tu consulta y te escribimos.</p>
-	<div class="mt-8 flex flex-wrap items-center gap-4">
-		<a th:href="${contacto.linkWhatsapp()}"
-		   class="rounded-full bg-tinta px-6 py-3 font-medium text-fondo hover:opacity-90">Escribinos por WhatsApp</a>
-		<span class="text-sm text-tenue" th:text="${contacto.tiempoRespuesta()}">Respondemos en 24 horas hábiles.</span>
-	</div>
-
-	<!-- [PENDIENTE] Formulario: guarda en la base, avisa por mail a los dos (si el mail falla la consulta
-	     no se pierde), datos mínimos, honeypot + límite de envíos, aviso de privacidad. Ver docs/01-vision-alcance.md §6. -->
-	<section class="mt-16 rounded-2xl border border-dashed border-black/20 p-8 text-tenue">
-		[PENDIENTE: formulario de contacto — campos en docs/02-contenido.md §6]
-		<p class="mt-4 text-sm">Respondemos en 24 horas hábiles. Usamos tus datos solo para responderte.</p>
+<main class="contenedor">
+	<section class="pt-14 pb-12 sm:pt-24 sm:pb-16">
+		<p class="etiqueta">Contacto</p>
+		<h1 class="titulo-display mt-6 text-6xl sm:text-8xl">Hablemos.</h1>
+		<p class="mt-6 max-w-2xl text-lg leading-relaxed text-tenue">La forma más rápida es WhatsApp. Si preferís, dejanos tu consulta y te escribimos. La primera charla es gratis.</p>
 	</section>
+
+	<div class="grid gap-6 sm:grid-cols-2">
+		<!-- Acción principal -->
+		<section class="flex flex-col justify-between rounded-3xl bg-tinta p-8 text-fondo sm:p-10">
+			<div>
+				<p class="etiqueta text-fondo/60">La más rápida</p>
+				<h2 class="titulo-display mt-6 text-4xl">Escribinos por WhatsApp</h2>
+				<p class="mt-4 text-fondo/70" th:text="${contacto.tiempoRespuesta()}">Respondemos en 24 horas hábiles.</p>
+			</div>
+			<a th:href="${contacto.linkWhatsapp()}" class="btn-claro mt-10 self-start">
+				<svg th:replace="~{fragments/layout :: icono-whatsapp}"></svg>
+				Abrir WhatsApp
+			</a>
+		</section>
+
+		<!-- [PENDIENTE] Formulario (PENDIENTES.md 15): guarda en la base, avisa por mail a los dos (si el mail falla la
+		     consulta no se pierde), campos de docs/02-contenido.md §6, honeypot + límite de envíos. -->
+		<section class="rounded-3xl border border-dashed border-tinta/25 p-8 sm:p-10">
+			<p class="etiqueta">O dejanos tu consulta</p>
+			<h2 class="titulo-display mt-6 text-4xl">Formulario</h2>
+			<p class="mt-4"><span class="pendiente">[PENDIENTE: formulario de contacto]</span></p>
+			<p class="mt-8 text-sm text-tenue">Respondemos en 24 horas hábiles. Usamos tus datos solo para responderte.</p>
+		</section>
+	</div>
 </main>
 <footer th:replace="~{fragments/layout :: pie}"></footer>
 </body>

@@ -1,35 +1,46 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/layout :: head(${proyecto.nombre}, ${proyecto.resumen})}"></head>
-<body class="bg-fondo text-tinta antialiased">
+<body class="bg-fondo font-sans text-tinta antialiased">
 <header th:replace="~{fragments/layout :: encabezado}"></header>
-<main class="mx-auto max-w-3xl px-4 py-16">
-	<a th:href="@{/proyectos}" class="text-sm text-tenue hover:text-tinta">← Proyectos</a>
-	<span class="mt-8 block w-fit rounded-full border border-black/20 px-3 py-1 text-xs font-medium"
-	      th:text="${proyecto.estado.etiqueta}">En desarrollo</span>
-	<h1 class="mt-4 text-4xl font-bold tracking-tight sm:text-5xl" th:text="${proyecto.nombre}">Proyecto</h1>
-	<p class="mt-2 text-tenue" th:text="${proyecto.rubro}">Rubro</p>
+<main class="contenedor">
+	<article class="mx-auto max-w-3xl">
+		<div class="pt-12 sm:pt-20">
+			<a th:href="@{/proyectos}" class="text-sm text-tenue transition hover:text-acento">← Todos los proyectos</a>
+			<div class="mt-10 flex flex-wrap items-center gap-3">
+				<span th:text="${proyecto.estado.etiqueta}"
+				      th:classappend="${proyecto.esCaso()} ? 'bg-acento text-superficie' : 'border border-tinta/20 text-tenue'"
+				      class="rounded-full px-3 py-1 text-xs font-medium">Estado</span>
+				<span class="text-sm text-tenue" th:text="${proyecto.rubro}">Rubro</span>
+			</div>
+			<h1 class="titulo-display mt-6 text-5xl sm:text-7xl" th:text="${proyecto.nombre}">Proyecto</h1>
+			<p class="mt-6 text-xl leading-relaxed text-tenue" th:text="${proyecto.resumen}">Resumen</p>
+		</div>
 
-	<section class="mt-12">
-		<h2 class="text-sm font-medium uppercase tracking-widest text-tenue">El problema</h2>
-		<p class="mt-3 text-lg" th:text="${proyecto.problema}">Problema</p>
-	</section>
-	<section class="mt-10">
-		<h2 class="text-sm font-medium uppercase tracking-widest text-tenue">La solución</h2>
-		<p class="mt-3 text-lg" th:text="${proyecto.solucion}">Solución</p>
-	</section>
-	<section class="mt-10">
-		<h2 class="text-sm font-medium uppercase tracking-widest text-tenue">Tecnologías</h2>
-		<ul class="mt-3 flex flex-wrap gap-2">
-			<li th:each="t : ${proyecto.tecnologias}" th:text="${t}"
-			    class="rounded-full bg-black/5 px-3 py-1 text-sm">Tecnología</li>
-		</ul>
-	</section>
-
-	<section th:if="${proyecto.resultado != null}" class="mt-10">
-		<h2 class="text-sm font-medium uppercase tracking-widest text-tenue">Resultado</h2>
-		<p class="mt-3 text-lg" th:text="${proyecto.resultado}">Resultado</p>
-	</section>
+		<dl class="mt-16 divide-y divide-linea border-y border-linea">
+			<div class="grid gap-3 py-10 sm:grid-cols-[10rem_1fr] sm:gap-10">
+				<dt class="etiqueta">El problema</dt>
+				<dd class="text-lg leading-relaxed" th:text="${proyecto.problema}">Problema</dd>
+			</div>
+			<div class="grid gap-3 py-10 sm:grid-cols-[10rem_1fr] sm:gap-10">
+				<dt class="etiqueta">La solución</dt>
+				<dd class="text-lg leading-relaxed" th:text="${proyecto.solucion}">Solución</dd>
+			</div>
+			<div class="grid gap-3 py-10 sm:grid-cols-[10rem_1fr] sm:gap-10">
+				<dt class="etiqueta">Tecnologías</dt>
+				<dd>
+					<ul class="flex flex-wrap gap-2">
+						<li th:each="t : ${proyecto.tecnologias}" th:text="${t}"
+						    class="rounded-full border border-linea bg-superficie px-3 py-1 text-sm">Tecnología</li>
+					</ul>
+				</dd>
+			</div>
+			<div th:if="${proyecto.resultado != null}" class="grid gap-3 py-10 sm:grid-cols-[10rem_1fr] sm:gap-10">
+				<dt class="etiqueta">Resultado</dt>
+				<dd class="text-lg leading-relaxed" th:text="${proyecto.resultado}">Resultado</dd>
+			</div>
+		</dl>
+	</article>
 
 	<section th:replace="~{fragments/layout :: cta}"></section>
 </main>

@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/layout :: head('Proyectos', 'Trabajos que hicimos y sistemas que estamos construyendo para negocios reales.')}"></head>
-<body class="bg-fondo text-tinta antialiased">
+<body class="bg-fondo font-sans text-tinta antialiased">
 <header th:replace="~{fragments/layout :: encabezado}"></header>
-<main class="mx-auto max-w-5xl px-4 py-16">
-	<h1 class="text-4xl font-bold tracking-tight sm:text-6xl">Proyectos</h1>
-	<p class="mt-6 max-w-2xl text-lg text-tenue">Lo que ya hicimos y lo que estamos construyendo. Cada uno muestra el problema, la solución y en qué estado está.</p>
+<main class="contenedor">
+	<section th:replace="~{fragments/layout :: cabecera('Proyectos', 'Lo que hicimos y lo que estamos construyendo', 'Cada proyecto muestra el problema, la solución y en qué estado está.')}"></section>
 
-	<section th:if="${!casos.isEmpty()}" class="mt-16">
-		<h2 class="text-sm font-medium uppercase tracking-widest text-tenue">Trabajos anteriores</h2>
-		<div class="mt-6 grid gap-6 sm:grid-cols-2">
+	<section th:if="${!casos.isEmpty()}" class="border-t border-linea pt-16">
+		<p class="etiqueta">Trabajos anteriores</p>
+		<div class="mt-10 grid gap-6 sm:grid-cols-2">
 			<th:block th:each="p : ${casos}">
 				<a th:replace="~{fragments/layout :: tarjeta(${p})}"></a>
 			</th:block>
 		</div>
 	</section>
 
-	<section th:if="${!enDesarrollo.isEmpty()}" class="mt-16">
-		<h2 class="text-sm font-medium uppercase tracking-widest text-tenue">En desarrollo</h2>
-		<div class="mt-6 grid gap-6 sm:grid-cols-2">
+	<section th:if="${!enDesarrollo.isEmpty()}" class="pt-20">
+		<p class="etiqueta">En desarrollo</p>
+		<div class="mt-10 grid gap-6 sm:grid-cols-2">
 			<th:block th:each="p : ${enDesarrollo}">
 				<a th:replace="~{fragments/layout :: tarjeta(${p})}"></a>
 			</th:block>

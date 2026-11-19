@@ -1,42 +1,74 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/layout :: head('Sistemas a medida para negocios', 'Desarrollamos sistemas a medida para barberías, peluquerías y negocios chicos de toda Argentina. Primero entendemos tu negocio, después construimos la herramienta.')}"></head>
-<body class="bg-fondo text-tinta antialiased">
+<body class="bg-fondo font-sans text-tinta antialiased">
 <header th:replace="~{fragments/layout :: encabezado}"></header>
-<main class="mx-auto max-w-5xl px-4">
+<main class="contenedor">
 
 	<!-- Primera pantalla: resultado, para quién y siguiente paso (docs/02-contenido.md §2) -->
-	<section class="py-16 sm:py-24">
-		<h1 class="max-w-3xl text-4xl font-bold tracking-tight sm:text-6xl">Entendemos tu negocio y construimos la herramienta que necesita.</h1>
-		<p class="mt-6 max-w-2xl text-lg text-tenue">Desarrollamos sistemas para barberías, peluquerías y negocios chicos de toda Argentina. Primero analizamos cómo trabajás y después construimos una herramienta pensada para tu día a día.</p>
-		<div class="mt-8 flex flex-wrap items-center gap-4">
-			<a th:href="${contacto.linkWhatsapp()}"
-			   class="rounded-full bg-tinta px-6 py-3 font-medium text-fondo hover:opacity-90">Escribinos por WhatsApp</a>
-			<span class="text-sm text-tenue" th:text="${contacto.tiempoRespuesta()}">Respondemos en 24 horas hábiles.</span>
+	<section class="pt-16 pb-20 sm:pt-28 sm:pb-28">
+		<p class="etiqueta">Sistemas a medida · Argentina</p>
+		<h1 class="titulo-display mt-8 max-w-5xl text-[3.25rem] sm:text-8xl">
+			Entendemos tu negocio y construimos la herramienta <em class="text-acento">que necesita.</em>
+		</h1>
+		<div class="mt-10 grid gap-10 sm:mt-14 sm:grid-cols-[1.2fr_1fr] sm:items-end">
+			<p class="max-w-xl text-lg leading-relaxed text-tenue sm:text-xl">Desarrollamos sistemas para barberías, peluquerías y negocios chicos de toda Argentina. Primero analizamos cómo trabajás y después construimos una herramienta pensada para tu día a día.</p>
+			<div class="flex flex-col items-start gap-3 sm:items-end">
+				<a th:href="${contacto.linkWhatsapp()}" class="btn-principal">
+					<svg th:replace="~{fragments/layout :: icono-whatsapp}"></svg>
+					Escribinos por WhatsApp
+				</a>
+				<span class="text-sm text-tenue" th:text="${contacto.tiempoRespuesta()}">Respondemos en 24 horas hábiles.</span>
+			</div>
+		</div>
+	</section>
+
+	<!-- Diferenciales (docs/02-contenido.md §1) -->
+	<section class="grid gap-px overflow-hidden rounded-2xl border border-linea bg-linea sm:grid-cols-3">
+		<div class="bg-fondo p-7 sm:p-9">
+			<p class="font-display text-4xl text-acento">01</p>
+			<h2 class="mt-4 text-lg font-semibold">Analizamos antes de programar</h2>
+			<p class="mt-2 leading-relaxed text-tenue">Relevamos tus procesos y flujos de trabajo. Es nuestra formación y nuestra experiencia.</p>
+		</div>
+		<div class="bg-fondo p-7 sm:p-9">
+			<p class="font-display text-4xl text-acento">02</p>
+			<h2 class="mt-4 text-lg font-semibold">Hecho a medida</h2>
+			<p class="mt-2 leading-relaxed text-tenue">El sistema se adapta a tu forma de trabajar, no al revés.</p>
+		</div>
+		<div class="bg-fondo p-7 sm:p-9">
+			<p class="font-display text-4xl text-acento">03</p>
+			<h2 class="mt-4 text-lg font-semibold">Trato cercano</h2>
+			<p class="mt-2 leading-relaxed text-tenue">Escuchamos, entendemos lo que necesitás y te acompañamos.</p>
 		</div>
 	</section>
 
 	<!-- Servicios destacados -->
-	<section class="border-t border-black/10 py-16">
-		<h2 class="text-sm font-medium uppercase tracking-widest text-tenue">Qué hacemos</h2>
-		<div class="mt-8 grid gap-8 sm:grid-cols-2">
-			<div>
-				<h3 class="text-2xl font-bold">Sistemas a medida</h3>
-				<p class="mt-2 text-tenue">Turnos, clientes, tareas o lo que tu negocio necesite organizar, en una herramienta hecha para tu forma de trabajar.</p>
+	<section class="pt-28">
+		<p class="etiqueta">Qué hacemos</p>
+		<div class="mt-10 grid gap-6 sm:grid-cols-2">
+			<div class="rounded-2xl border border-linea bg-superficie p-8 sm:p-10">
+				<h2 class="titulo-display text-4xl">Sistemas a medida</h2>
+				<p class="mt-4 text-lg leading-relaxed text-tenue">Turnos, clientes, tareas o lo que tu negocio necesite organizar, en una herramienta hecha para tu forma de trabajar.</p>
 			</div>
 			<!-- Segundo servicio a confirmar: PENDIENTES.md 7 -->
-			<div>
-				<h3 class="text-2xl font-bold">Análisis de tu negocio</h3>
-				<p class="mt-2 text-tenue">Antes de programar, relevamos tus procesos y te mostramos dónde se pierde tiempo y qué conviene mejorar.</p>
+			<div class="rounded-2xl border border-linea bg-superficie p-8 sm:p-10">
+				<h2 class="titulo-display text-4xl">Análisis de tu negocio</h2>
+				<p class="mt-4 text-lg leading-relaxed text-tenue">Antes de programar, relevamos tus procesos y te mostramos dónde se pierde tiempo y qué conviene mejorar.</p>
 			</div>
 		</div>
-		<a th:href="@{/servicios}" class="mt-8 inline-block font-medium underline underline-offset-4">Cómo trabajamos</a>
+		<a th:href="@{/servicios}" class="link-flecha mt-10">Cómo trabajamos <span aria-hidden="true">→</span></a>
 	</section>
 
 	<!-- Prueba de capacidad: primero lo que ya hicimos, después lo que estamos construyendo -->
-	<section class="border-t border-black/10 py-16">
-		<h2 class="text-sm font-medium uppercase tracking-widest text-tenue">Lo que hicimos y lo que estamos construyendo</h2>
-		<div class="mt-8 grid gap-6 sm:grid-cols-2">
+	<section class="pt-28">
+		<div class="flex flex-wrap items-end justify-between gap-6">
+			<div>
+				<p class="etiqueta">Proyectos</p>
+				<h2 class="titulo-display mt-6 max-w-2xl text-4xl sm:text-6xl">Lo que hicimos y lo que estamos construyendo</h2>
+			</div>
+			<a th:href="@{/proyectos}" class="link-flecha">Ver todos <span aria-hidden="true">→</span></a>
+		</div>
+		<div class="mt-12 grid gap-6 sm:grid-cols-2">
 			<th:block th:each="p : ${casos}">
 				<a th:replace="~{fragments/layout :: tarjeta(${p})}"></a>
 			</th:block>
@@ -44,7 +76,6 @@
 				<a th:replace="~{fragments/layout :: tarjeta(${p})}"></a>
 			</th:block>
 		</div>
-		<a th:href="@{/proyectos}" class="mt-8 inline-block font-medium underline underline-offset-4">Ver proyectos</a>
 	</section>
 
 	<section th:replace="~{fragments/layout :: cta}"></section>

@@ -44,7 +44,8 @@ class PaginaControllerTest {
 	void inicioMuestraTitularServiciosYProyectos() throws Exception {
 		mvc.perform(get("/"))
 				.andExpect(content().string(allOf(
-						containsString("Entendemos tu negocio y construimos la herramienta que necesita."),
+						containsString("Entendemos tu negocio y construimos la herramienta"),
+						containsString("que necesita."),
 						containsString("Sistemas a medida"),
 						containsString("Análisis de tu negocio"),
 						containsString("Respondemos en 24 horas hábiles."),

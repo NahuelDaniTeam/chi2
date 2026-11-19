@@ -1,49 +1,52 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/layout :: head('Servicios', 'Sistemas a medida para negocios que hoy se organizan con cuadernos, planillas o grupos de WhatsApp. La primera charla es gratis.')}"></head>
-<body class="bg-fondo text-tinta antialiased">
+<body class="bg-fondo font-sans text-tinta antialiased">
 <header th:replace="~{fragments/layout :: encabezado}"></header>
-<main class="mx-auto max-w-5xl px-4 py-16">
-	<h1 class="text-4xl font-bold tracking-tight sm:text-6xl">Servicios</h1>
-	<p class="mt-6 max-w-2xl text-lg text-tenue">Hacemos sistemas a medida para negocios que hoy se organizan con cuadernos, planillas o grupos de WhatsApp. No partimos de una aplicación genérica: empezamos por entender cómo trabajás y diseñamos la herramienta a partir de eso.</p>
+<main class="contenedor">
+	<section th:replace="~{fragments/layout :: cabecera('Servicios', 'Empezamos por entender cómo trabajás', 'Hacemos sistemas a medida para negocios que hoy se organizan con cuadernos, planillas o grupos de WhatsApp. No partimos de una aplicación genérica: empezamos por entender cómo trabajás y diseñamos la herramienta a partir de eso.')}"></section>
 
 	<!-- docs/02-contenido.md §3 -->
-	<h2 class="mt-16 text-sm font-medium uppercase tracking-widest text-tenue">Cómo trabajamos</h2>
-	<ol class="mt-8 grid gap-8 sm:grid-cols-2">
-		<li>
-			<p class="text-sm text-tenue">1</p>
-			<h3 class="mt-1 text-xl font-bold">Charlamos</h3>
-			<p class="mt-2 text-tenue">Nos contás qué te pasa y qué querés mejorar. La primera charla es gratis.</p>
-		</li>
-		<li>
-			<p class="text-sm text-tenue">2</p>
-			<h3 class="mt-1 text-xl font-bold">Relevamos</h3>
-			<p class="mt-2 text-tenue">Vemos cómo trabaja tu negocio hoy: procesos, tiempos, quién hace qué.</p>
-		</li>
-		<li>
-			<p class="text-sm text-tenue">3</p>
-			<h3 class="mt-1 text-xl font-bold">Te proponemos</h3>
-			<p class="mt-2 text-tenue">Te mostramos qué haríamos, en qué orden y cuánto llevaría.</p>
-		</li>
-		<li>
-			<p class="text-sm text-tenue">4</p>
-			<h3 class="mt-1 text-xl font-bold">Construimos y te mostramos avances</h3>
-			<p class="mt-2 text-tenue">Vas viendo el sistema mientras lo hacemos y opinás.</p>
-		</li>
-		<li>
-			<p class="text-sm text-tenue">5</p>
-			<h3 class="mt-1 text-xl font-bold">Lo ponemos en marcha y te acompañamos</h3>
-			<p class="mt-2 text-tenue">Te ayudamos a empezar a usarlo y te damos soporte después de la entrega.</p>
-		</li>
-	</ol>
+	<section class="border-t border-linea pt-16">
+		<p class="etiqueta">Cómo trabajamos</p>
+		<ol class="mt-10 divide-y divide-linea border-y border-linea">
+			<li class="grid gap-3 py-8 sm:grid-cols-[6rem_1fr_1.4fr] sm:items-baseline sm:gap-8">
+				<span class="font-display text-5xl text-acento">01</span>
+				<h2 class="titulo-display text-3xl">Charlamos</h2>
+				<p class="leading-relaxed text-tenue">Nos contás qué te pasa y qué querés mejorar. La primera charla es gratis.</p>
+			</li>
+			<li class="grid gap-3 py-8 sm:grid-cols-[6rem_1fr_1.4fr] sm:items-baseline sm:gap-8">
+				<span class="font-display text-5xl text-acento">02</span>
+				<h2 class="titulo-display text-3xl">Relevamos</h2>
+				<p class="leading-relaxed text-tenue">Vemos cómo trabaja tu negocio hoy: procesos, tiempos, quién hace qué.</p>
+			</li>
+			<li class="grid gap-3 py-8 sm:grid-cols-[6rem_1fr_1.4fr] sm:items-baseline sm:gap-8">
+				<span class="font-display text-5xl text-acento">03</span>
+				<h2 class="titulo-display text-3xl">Te proponemos</h2>
+				<p class="leading-relaxed text-tenue">Te mostramos qué haríamos, en qué orden y cuánto llevaría.</p>
+			</li>
+			<li class="grid gap-3 py-8 sm:grid-cols-[6rem_1fr_1.4fr] sm:items-baseline sm:gap-8">
+				<span class="font-display text-5xl text-acento">04</span>
+				<h2 class="titulo-display text-3xl">Construimos y te mostramos avances</h2>
+				<p class="leading-relaxed text-tenue">Vas viendo el sistema mientras lo hacemos y opinás.</p>
+			</li>
+			<li class="grid gap-3 py-8 sm:grid-cols-[6rem_1fr_1.4fr] sm:items-baseline sm:gap-8">
+				<span class="font-display text-5xl text-acento">05</span>
+				<h2 class="titulo-display text-3xl">Lo ponemos en marcha y te acompañamos</h2>
+				<p class="leading-relaxed text-tenue">Te ayudamos a empezar a usarlo y te damos soporte después de la entrega.</p>
+			</li>
+		</ol>
+	</section>
 
-	<h2 class="mt-16 text-sm font-medium uppercase tracking-widest text-tenue">Con quién trabajamos</h2>
-	<ul class="mt-6 grid gap-4 text-lg sm:grid-cols-2">
-		<li>Barberías</li>
-		<li>Peluquerías</li>
-		<li>Negocios que necesitan organizar tareas y planificación</li>
-		<li>Negocios en general</li>
-	</ul>
+	<section class="pt-24">
+		<p class="etiqueta">Con quién trabajamos</p>
+		<ul class="mt-10 flex flex-wrap gap-3">
+			<li class="rounded-full border border-linea bg-superficie px-5 py-3 text-lg">Barberías</li>
+			<li class="rounded-full border border-linea bg-superficie px-5 py-3 text-lg">Peluquerías</li>
+			<li class="rounded-full border border-linea bg-superficie px-5 py-3 text-lg">Negocios que necesitan organizar tareas y planificación</li>
+			<li class="rounded-full border border-linea bg-superficie px-5 py-3 text-lg">Negocios en general</li>
+		</ul>
+	</section>
 
 	<section th:replace="~{fragments/layout :: cta}"></section>
 </main>
