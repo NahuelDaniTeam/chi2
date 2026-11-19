@@ -5,9 +5,10 @@ Sitio público y contenedor de la marca. Presenta quiénes somos y qué hacemos,
 **Estado:** esqueleto inicial. Pendiente de completar por el equipo.
 **Última actualización:** 2026-11-18
 
-**Documento de referencia:** `docs/01-vision-alcance.md` (visión, alcance de la v1, principios de diseño,
-riesgos y criterio de "v1 terminada"). Todo lo que se construya tiene que respetarlo; si este archivo y ese
-documento se contradicen, manda el documento y se corrige este archivo.
+**Documentos de referencia:** `docs/01-vision-alcance.md` (visión, alcance de la v1, principios de diseño,
+riesgos y criterio de "v1 terminada") y `docs/02-contenido.md` (los textos del sitio: las plantillas usan
+esos textos, no se inventan otros). Todo lo que se construya tiene que respetarlos; si este archivo y esos
+documentos se contradicen, mandan los documentos y se corrige este archivo.
 
 ---
 
@@ -24,12 +25,12 @@ documento se contradicen, manda el documento y se corrige este archivo.
 
 - **Quiénes somos:** estudiantes avanzados de Ingeniería en Sistemas de Información en la UTN FRC, que desarrollan sistemas a medida.
 - **Equipo:** Nahuel Luna y Daniel Patolsky.
-- **Mensaje principal (titular):** [PENDIENTE: una frase que diga qué hacemos y para quién]
+- **Titular:** "Entendemos tu negocio y construimos la herramienta que necesita." (textos completos en `docs/02-contenido.md`)
 
 ## 3. Servicios
 
-- **Sistemas a medida:** [PENDIENTE: descripción en una o dos frases]
-- **Otros servicios:** [PENDIENTE]
+- **Sistemas a medida:** turnos, clientes, tareas o lo que el negocio necesite organizar, en una herramienta hecha para su forma de trabajar.
+- **Análisis de tu negocio:** propuesta a confirmar (`PENDIENTES.md`).
 
 ## 4. Rubros y clientes objetivo
 
@@ -40,20 +41,24 @@ documento se contradicen, manda el documento y se corrige este archivo.
 
 ## 5. Proyectos (casos)
 
-En la v1 se muestran como **proyectos "en desarrollo"** (barbería y gestión de tareas), cada uno con problema, solución propuesta, tecnologías y estado. Pasan a "caso" cuando están terminados. Los proyectos de facultad se rotulan como "proyecto académico".
+La v1 muestra dos grupos, en este orden:
 
-| Caso | Tipo | Estado |
+| Proyecto | Tipo | Estado |
 |---|---|---|
-| Caso 1 | [PENDIENTE: real o académico] | [PENDIENTE] |
-| Caso 2 | [PENDIENTE: real o académico] | [PENDIENTE] |
+| Seguimiento de camiones recolectores | Trabajo anterior de Daniel (caso real) | Detalle pendiente |
+| Cálculo de medidas para una imprenta | Trabajo anterior de Daniel (caso real) | Detalle pendiente |
+| Sistema para barberías | En desarrollo | Detalle pendiente |
+| Gestión de tareas | En desarrollo | Detalle pendiente |
+
+Cada uno se presenta con problema, solución, tecnologías y estado (los casos, además, con resultado). Los proyectos en desarrollo pasan a "caso" cuando están terminados. Los proyectos de facultad se rotulan como "proyecto académico".
 
 Solo se muestran como clientes los proyectos reales cuyo cliente haya dado permiso. No se usan testimonios ficticios.
 
 ## 6. Estructura de páginas
 
-1. **Inicio:** titular, servicios destacados, proyectos en desarrollo y llamado a la acción.
-2. **Servicios:** qué hacemos y con qué tipo de negocio trabajamos.
-3. **Proyectos:** lista y página de detalle de cada proyecto.
+1. **Inicio:** titular, servicios destacados, casos y proyectos en desarrollo, y llamado a la acción.
+2. **Servicios:** qué hacemos, cómo trabajamos (5 pasos) y con qué tipo de negocio trabajamos.
+3. **Proyectos:** trabajos anteriores y proyectos en desarrollo, con página de detalle de cada uno.
 4. **Quiénes somos:** equipo y presentación general.
 5. **Contacto:** botón principal a WhatsApp y formulario como alternativa.
 6. **Área de clientes:** fuera de la v1.

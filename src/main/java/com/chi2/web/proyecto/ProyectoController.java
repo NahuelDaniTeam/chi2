@@ -18,7 +18,8 @@ public class ProyectoController {
 
 	@GetMapping("/proyectos")
 	public String lista(Model model) {
-		model.addAttribute("proyectos", catalogo.todos());
+		model.addAttribute("casos", catalogo.casos());
+		model.addAttribute("enDesarrollo", catalogo.enDesarrollo());
 		return "proyectos/lista";
 	}
 

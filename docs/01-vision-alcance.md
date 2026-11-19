@@ -52,7 +52,7 @@ Estos principios toman como referencia [B2B Website Design (K6 Agency)](https://
 |---|---|---|
 | 1 | **Inicio** | Titular, servicios destacados, proyectos en desarrollo y llamado a la acción. |
 | 2 | **Servicios** | Qué hacemos y con qué rubros trabajamos. |
-| 3 | **Proyectos con página de detalle** | Barbería y gestión de tareas, rotulados como **"en desarrollo"**. Cada uno muestra problema, solución propuesta, tecnologías y estado. Pasan a "caso" cuando estén terminados. |
+| 3 | **Proyectos con página de detalle** | **Trabajos anteriores** como casos reales (seguimiento de camiones recolectores y cálculo de medidas para una imprenta), con problema, solución, tecnologías y resultado. **Proyectos en desarrollo** (barbería y gestión de tareas), rotulados como tales, con problema, solución propuesta, tecnologías y estado; pasan a "caso" cuando estén terminados. |
 | 4 | **Quiénes somos** | Equipo y presentación, incluida la mención a la UTN FRC. |
 | 5 | **Contacto** | Botón principal a WhatsApp y formulario como alternativa. |
 | 6 | **Formulario de contacto** | Guarda la consulta en la base de datos y avisa por mail a los dos. Si el mail falla, la consulta no se pierde. Pide solo los datos mínimos e informa el tiempo de respuesta y el aviso de privacidad. |
@@ -86,7 +86,7 @@ Estos principios toman como referencia [B2B Website Design (K6 Agency)](https://
 ## 8. Supuestos
 
 - Los visitantes llegan sobre todo desde el celular, por enlaces de WhatsApp, LinkedIn o búsquedas por el nombre de la marca.
-- Mostrar proyectos en desarrollo, bien presentados, alcanza como prueba de capacidad mientras no haya casos terminados.
+- Los trabajos anteriores, más los proyectos en desarrollo bien presentados, alcanzan como prueba de capacidad para la v1.
 - Podemos responder las consultas en 24 horas hábiles.
 
 ## 9. Riesgos

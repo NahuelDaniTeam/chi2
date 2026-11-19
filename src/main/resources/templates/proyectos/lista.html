@@ -1,16 +1,29 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/layout :: head('Proyectos', 'Proyectos que CHI2 está desarrollando para negocios chicos.')}"></head>
-<body class="bg-fondo text-tinta antialiased">
+<head th:replace="~{fragments/layout :: head('Proyectos', 'Trabajos que hicimos y sistemas que estamos construyendo para negocios reales.')}"></head>
+<body class="bg-fondo font-sans text-tinta antialiased">
 <header th:replace="~{fragments/layout :: encabezado}"></header>
-<main class="mx-auto max-w-5xl px-4 py-16">
-	<h1 class="text-4xl font-bold tracking-tight sm:text-6xl">Proyectos</h1>
-	<p class="mt-6 max-w-2xl text-lg text-tenue">Sistemas que estamos construyendo para negocios reales. Cada uno muestra el problema, la solución y en qué estado está.</p>
-	<div class="mt-12 grid gap-6 sm:grid-cols-2">
-		<th:block th:each="p : ${proyectos}">
-			<a th:replace="~{fragments/layout :: tarjeta(${p})}"></a>
-		</th:block>
-	</div>
+<main class="contenedor">
+	<section th:replace="~{fragments/layout :: cabecera('Proyectos', 'Lo que hicimos y lo que estamos construyendo', 'Cada proyecto muestra el problema, la solución y en qué estado está.')}"></section>
+
+	<section th:if="${!casos.isEmpty()}" class="border-t border-linea pt-16">
+		<p class="etiqueta">Trabajos anteriores</p>
+		<div class="mt-10 grid gap-6 sm:grid-cols-2">
+			<th:block th:each="p : ${casos}">
+				<a th:replace="~{fragments/layout :: tarjeta(${p})}"></a>
+			</th:block>
+		</div>
+	</section>
+
+	<section th:if="${!enDesarrollo.isEmpty()}" class="pt-20">
+		<p class="etiqueta">En desarrollo</p>
+		<div class="mt-10 grid gap-6 sm:grid-cols-2">
+			<th:block th:each="p : ${enDesarrollo}">
+				<a th:replace="~{fragments/layout :: tarjeta(${p})}"></a>
+			</th:block>
+		</div>
+	</section>
+
 	<section th:replace="~{fragments/layout :: cta}"></section>
 </main>
 <footer th:replace="~{fragments/layout :: pie}"></footer>

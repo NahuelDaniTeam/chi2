@@ -41,13 +41,37 @@ class PaginaControllerTest {
 	}
 
 	@Test
-	void inicioMuestraLosProyectosEnDesarrollo() throws Exception {
+	void inicioMuestraTitularServiciosYProyectos() throws Exception {
 		mvc.perform(get("/"))
 				.andExpect(content().string(allOf(
+						containsString("Entendemos tu negocio y construimos la herramienta"),
+						containsString("que necesita."),
+						containsString("Sistemas a medida"),
+						containsString("Análisis de tu negocio"),
 						containsString("Respondemos en 24 horas hábiles."),
+						containsString("/proyectos/camiones-recolectores"),
+						containsString("/proyectos/imprenta"),
 						containsString("/proyectos/barberia"),
-						containsString("/proyectos/gestion-de-tareas"),
-						containsString("En desarrollo"))));
+						containsString("/proyectos/gestion-de-tareas"))));
+	}
+
+	@Test
+	void quienesSomosMuestraLasFotosDelEquipo() throws Exception {
+		mvc.perform(get("/quienes-somos"))
+				.andExpect(content().string(allOf(
+						containsString("/img/equipo/nahuel.webp"),
+						containsString("/img/equipo/daniel.webp"),
+						containsString("alt=\"Nahuel Luna\""),
+						containsString("alt=\"Daniel Patolsky\""))));
+	}
+
+	@Test
+	void serviciosMuestraLosCincoPasosDeComoTrabajamos() throws Exception {
+		mvc.perform(get("/servicios"))
+				.andExpect(content().string(allOf(
+						containsString("Cómo trabajamos"),
+						containsString("La primera charla es gratis."),
+						containsString("soporte después de la entrega"))));
 	}
 
 }

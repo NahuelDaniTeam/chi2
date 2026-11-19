@@ -111,6 +111,19 @@ Van como casos, con problema, solución, tecnologías y resultado. Son la prueba
 
 ---
 
-## 7. Pendientes
+## 7. Textos de diseño (propuesta)
+
+Frases cortas que sumó el rediseño visual para dar jerarquía a cada página. Son propuesta: si no convencen, se cambian acá y en la plantilla.
+
+| Dónde | Texto |
+|---|---|
+| Inicio, rótulo sobre el titular | Sistemas a medida · Argentina |
+| Servicios, título | Empezamos por entender cómo trabajás |
+| Proyectos, título | Lo que hicimos y lo que estamos construyendo |
+| Quiénes somos, título | Dos amigos de la facultad, un proyecto en marcha |
+| Contacto, título | Hablemos. |
+| Bloque de cierre (todas las páginas) | ¿Querés ordenar tu negocio? · Contanos cómo trabajás hoy y vemos juntos qué te conviene. La primera charla es gratis. |
+
+## 8. Pendientes
 
 Se siguen en `PENDIENTES.md`.

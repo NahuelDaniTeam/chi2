@@ -1,22 +1,46 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/layout :: head('Quiénes somos', 'El equipo detrás de CHI2.')}"></head>
-<body class="bg-fondo text-tinta antialiased">
+<head th:replace="~{fragments/layout :: head('Quiénes somos', 'Somos Nahuel y Daniel, estudiantes de último año de Ingeniería en Sistemas de Información en la UTN FRC.')}"></head>
+<body class="bg-fondo font-sans text-tinta antialiased">
 <header th:replace="~{fragments/layout :: encabezado}"></header>
-<main class="mx-auto max-w-5xl px-4 py-16">
-	<h1 class="text-4xl font-bold tracking-tight sm:text-6xl">Quiénes somos</h1>
-	<p class="mt-6 max-w-2xl text-lg text-tenue">Somos estudiantes avanzados de Ingeniería en Sistemas de Información en la UTN FRC y desarrollamos sistemas a medida para negocios.</p>
+<main class="contenedor">
+	<!-- docs/02-contenido.md §5 -->
+	<section th:replace="~{fragments/layout :: cabecera('Quiénes somos', 'Dos amigos de la facultad, un proyecto en marcha', 'Somos Nahuel y Daniel, estudiantes de último año de Ingeniería en Sistemas de Información en la UTN FRC. Nos conocimos en la facultad en 2021, hicimos juntos la mayoría de las materias y de ahí nació la amistad y la idea de trabajar juntos algún día. CHI2 es ese proyecto en marcha: soluciones digitales para problemas reales de negocios reales, que es lo que más nos apasiona.')}"></section>
 
-	<ul class="mt-12 grid gap-6 sm:grid-cols-2">
-		<li class="rounded-2xl border border-black/10 p-6">
-			<p class="text-xl font-bold">Nahuel Luna</p>
-			<p class="mt-1 text-tenue">[PENDIENTE: rol]</p>
-		</li>
-		<li class="rounded-2xl border border-black/10 p-6">
-			<p class="text-xl font-bold">Daniel Patolsky</p>
-			<p class="mt-1 text-tenue">[PENDIENTE: rol]</p>
-		</li>
-	</ul>
+	<section class="border-t border-linea pt-16">
+		<p class="etiqueta">Equipo</p>
+		<ul class="mt-10 grid gap-10 sm:grid-cols-2 sm:gap-8">
+			<li>
+				<picture>
+					<source th:srcset="@{/img/equipo/nahuel.webp}" type="image/webp">
+					<img th:src="@{/img/equipo/nahuel.jpg}" alt="Nahuel Luna" width="800" height="1000" loading="lazy"
+					     class="aspect-[4/5] w-full rounded-2xl object-cover">
+				</picture>
+				<h2 class="titulo-display mt-6 text-4xl">Nahuel Luna</h2>
+				<p class="mt-1 text-sm font-medium text-acento">Análisis funcional y desarrollo</p>
+				<p class="mt-4 leading-relaxed text-tenue">Desde mayo de 2026 trabaja como analista funcional en EPEC, donde releva procesos y flujos de trabajo para diseñar soluciones tecnológicas.</p>
+			</li>
+			<!-- Rol y texto a confirmar por Daniel: PENDIENTES.md 4 -->
+			<li>
+				<picture>
+					<source th:srcset="@{/img/equipo/daniel.webp}" type="image/webp">
+					<img th:src="@{/img/equipo/daniel.jpg}" alt="Daniel Patolsky" width="800" height="1000" loading="lazy"
+					     class="aspect-[4/5] w-full rounded-2xl object-cover">
+				</picture>
+				<h2 class="titulo-display mt-6 text-4xl">Daniel Patolsky</h2>
+				<p class="mt-1 text-sm font-medium"><span class="pendiente">[PENDIENTE: rol]</span></p>
+				<p class="mt-4 leading-relaxed text-tenue">Desarrolló un prototipo de seguimiento de camiones recolectores para la ciudad de Santiago del Estero y un sistema de cálculo de medidas para una imprenta.</p>
+			</li>
+		</ul>
+	</section>
+
+	<section class="pt-24">
+		<p class="etiqueta">Qué nos importa</p>
+		<blockquote class="titulo-display mt-8 max-w-4xl text-4xl sm:text-5xl">
+			“Nuestro objetivo es que tu trabajo de todos los días sea más simple.”
+		</blockquote>
+		<p class="mt-6 max-w-2xl text-lg leading-relaxed text-tenue">Por eso escuchamos primero, nos tomamos el tiempo de entender tu negocio y construimos una herramienta que realmente uses.</p>
+	</section>
 
 	<section th:replace="~{fragments/layout :: cta}"></section>
 </main>
