@@ -14,12 +14,22 @@
 	<h2 class="mt-16 text-sm font-medium uppercase tracking-widest text-tenue">Equipo</h2>
 	<ul class="mt-6 grid gap-6 sm:grid-cols-2">
 		<li class="rounded-2xl border border-black/10 p-6">
+			<picture>
+				<source th:srcset="@{/img/equipo/nahuel.webp}" type="image/webp">
+				<img th:src="@{/img/equipo/nahuel.jpg}" alt="Nahuel Luna" width="800" height="1000" loading="lazy"
+				     class="mb-6 aspect-[4/5] w-full rounded-xl object-cover">
+			</picture>
 			<p class="text-xl font-bold">Nahuel Luna</p>
 			<p class="mt-1 text-sm font-medium">Análisis funcional y desarrollo</p>
 			<p class="mt-4 text-tenue">Desde mayo de 2026 trabaja como analista funcional en EPEC, donde releva procesos y flujos de trabajo para diseñar soluciones tecnológicas.</p>
 		</li>
 		<!-- Rol y texto a confirmar por Daniel: PENDIENTES.md 4 -->
 		<li class="rounded-2xl border border-black/10 p-6">
+			<picture>
+				<source th:srcset="@{/img/equipo/daniel.webp}" type="image/webp">
+				<img th:src="@{/img/equipo/daniel.jpg}" alt="Daniel Patolsky" width="800" height="1000" loading="lazy"
+				     class="mb-6 aspect-[4/5] w-full rounded-xl object-cover">
+			</picture>
 			<p class="text-xl font-bold">Daniel Patolsky</p>
 			<p class="mt-1 text-sm font-medium">[PENDIENTE: rol]</p>
 			<p class="mt-4 text-tenue">Desarrolló un prototipo de seguimiento de camiones recolectores para la ciudad de Santiago del Estero y un sistema de cálculo de medidas para una imprenta.</p>

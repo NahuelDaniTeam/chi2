@@ -55,6 +55,16 @@ class PaginaControllerTest {
 	}
 
 	@Test
+	void quienesSomosMuestraLasFotosDelEquipo() throws Exception {
+		mvc.perform(get("/quienes-somos"))
+				.andExpect(content().string(allOf(
+						containsString("/img/equipo/nahuel.webp"),
+						containsString("/img/equipo/daniel.webp"),
+						containsString("alt=\"Nahuel Luna\""),
+						containsString("alt=\"Daniel Patolsky\""))));
+	}
+
+	@Test
 	void serviciosMuestraLosCincoPasosDeComoTrabajamos() throws Exception {
 		mvc.perform(get("/servicios"))
 				.andExpect(content().string(allOf(

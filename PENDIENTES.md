@@ -140,6 +140,7 @@ _(nada por ahora)_
 
 ## Hechos
 
+- [x] Fotos del equipo en "Quiénes somos" (recortadas 4:5, optimizadas y sin datos de ubicación, en `static/img/equipo/`). · 2026-11-18
 - [x] Pasar los textos de `docs/02-contenido.md` a las páginas y sumar los trabajos anteriores como casos. Lo que falta del contenido sigue marcado `[PENDIENTE]` en el sitio (pendientes 1 a 4, 6 y 7). · 2026-11-18
 - [x] Visión y alcance de la v1. (`docs/01-vision-alcance.md`) · 2026-11-18
 - [x] Elegir el titular: "Entendemos tu negocio y construimos la herramienta que necesita". · 2026-11-18
