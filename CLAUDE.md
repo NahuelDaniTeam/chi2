@@ -118,7 +118,7 @@ Los pendientes del equipo se registran **solo** en `PENDIENTES.md`, en la raíz 
 2. **Al arrancar cada sesión**, antes de responder lo primero que te pidan, leé `PENDIENTES.md` (la versión de `origin/main` si la rama local está atrasada) y mostrale al usuario en una lista corta:
    - lo que tiene pendiente en su sección (**"Para Nahuel"** o **"Para Daniel"**) y en **"Para los dos"**;
    - cuántos pendientes tiene el compañero, sin el detalle salvo que lo pida.
-3. **Al terminar una tarea**, si cumple un pendiente, movelo a **Hechos** con la fecha. Si surge algo nuevo que tiene que hacer el compañero o el usuario, cargalo en la sección correcta con el formato de la hoja. Avisale al usuario qué agregaste o cerraste.
+3. **Al terminar una tarea**, si cumple un pendiente, movelo a **Hechos** con la fecha. Si surge algo nuevo que tiene que hacer el compañero o el usuario, cargalo en la sección correcta con el formato de la hoja (contexto, qué entregar, dónde). **Escribilo para alguien que no estuvo en la conversación**: incluí lo ya decidido y lo que se sabe hasta ahora. Avisale al usuario qué agregaste o cerraste.
 4. **Cargar y cerrar pendientes** se hace en la misma rama y PR del trabajo que los genera o resuelve; no en un commit directo a `main`.
 5. Si el usuario pide "dejale un pendiente a Daniel" (o a Nahuel), se agrega en la sección del otro con `cargado por <quien>, <fecha>`.
 
