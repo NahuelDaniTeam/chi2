@@ -36,7 +36,7 @@
 				</dd>
 			</div>
 			<div th:if="${proyecto.resultado != null}" class="grid gap-3 py-10 sm:grid-cols-[10rem_1fr] sm:gap-10">
-				<dt class="etiqueta">Resultado</dt>
+				<dt class="etiqueta" th:text="${proyecto.tituloResultado()}">Resultado</dt>
 				<dd class="text-lg leading-relaxed" th:text="${proyecto.resultado}">Resultado</dd>
 			</div>
 		</dl>

@@ -4,7 +4,8 @@ import java.util.List;
 
 /**
  * Proyecto mostrado en el sitio: problema, solución, tecnologías y estado.
- * {@code resultado} aplica a los casos (trabajos terminados); en los proyectos en desarrollo va {@code null}.
+ * {@code resultado}: en los casos (trabajos terminados), qué se logró; en los proyectos en desarrollo,
+ * en qué estado están. Va {@code null} si todavía no hay nada que contar.
  */
 public record Proyecto(
 		String slug,
@@ -19,6 +20,11 @@ public record Proyecto(
 
 	public boolean esCaso() {
 		return estado == EstadoProyecto.CASO;
+	}
+
+	/** Rótulo de {@code resultado} en el detalle: "Resultado" en un caso, "Estado actual" en el resto. */
+	public String tituloResultado() {
+		return esCaso() ? "Resultado" : "Estado actual";
 	}
 
 }

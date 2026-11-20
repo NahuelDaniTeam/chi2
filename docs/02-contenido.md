@@ -61,9 +61,27 @@ Es la idea que el visitante tiene que llevarse, aunque solo lea la primera panta
 
 ## 4. Proyectos
 
-Son los proyectos "en desarrollo" de la v1: barbería y gestión de tareas.
+Son los proyectos "en desarrollo" de la v1: barbería y gestión de tareas. Cada uno vive en su propio repo
+(`chi2-peluqueria` y `chi2-gestor_tareas`); estos textos salen de sus documentos de visión y se actualizan
+cuando avanzan. En el sitio están en `CatalogoProyectos`.
 
-> [PENDIENTE: problema, solución (3 o 4 funciones), tecnologías y estado de cada uno]
+#### Sistema para barberías
+
+- **Rubro:** barberías y peluquerías.
+- **Resumen:** Turnos online, la agenda de cada barbero y el control de lo que se cobra, todo desde el celular.
+- **Problema:** Las barberías arreglan los turnos por WhatsApp, a mano: el dueño o los barberos contestan mensajes y anotan en un cuaderno o en el celular. Se pisan turnos, se pierden mensajes y nadie sabe con certeza cuántos cortes hizo cada barbero ni cuánto se cobró en efectivo y cuánto por transferencia.
+- **Solución:** Cada barbería tiene su link de reservas: el cliente elige el servicio, el barbero (o "cualquiera"), el día y un horario libre, y la reserva le llega a la barbería por WhatsApp, sin costo. Cada barbero ve su agenda y marca cada turno como empezado y terminado; el dueño ve la de todos. Al terminar se anota cuánto se cobró y cómo, y cada uno ve sus números del día, la semana y el mes. Está pensado para usarse desde el celular, sin instalar nada desde una tienda de apps.
+- **Tecnologías:** Java, Spring Boot, PostgreSQL, Tailwind CSS.
+- **Estado actual:** Ya funcionan el alta de cada barbería con sus usuarios, el catálogo de servicios, el perfil y los horarios de cada barbero (con francos y ausencias) y la agenda de turnos sin superposiciones. Siguen la atención de cada turno con el registro del cobro, las métricas por barbero y del negocio, y la reserva online con aviso por WhatsApp.
+
+#### Gestión de tareas
+
+- **Rubro:** organización personal y de equipos.
+- **Resumen:** Lo de hoy, la semana, el mes y el largo plazo en un solo lugar, con prioridades y tablero.
+- **Problema:** Las tareas quedan repartidas entre notas del celular, papelitos, chats y la memoria. Cuesta ver qué hay que hacer hoy, qué se viene en la semana y qué quedó sin planificar, y lo urgente se mezcla con lo que puede esperar. Las herramientas conocidas tienen tantas opciones que muchas veces terminan sin usarse.
+- **Solución:** Al abrirlo muestra lo de hoy, ordenado por prioridad y con lo atrasado a la vista. Una tarea se carga en segundos: se escribe y se guarda con Enter, con atajos para la prioridad y el día. La semana y el mes se ven como calendario, lista o tablero, donde las tareas se arrastran de pendiente a en curso y a finalizada; lo que todavía no tiene fecha queda en "Por planificar". Todo se guarda al instante, sin botón de guardar.
+- **Tecnologías:** Java, Spring Boot, PostgreSQL, JavaScript, Tailwind CSS.
+- **Estado actual:** La primera etapa, de uso personal, ya funciona: vistas de hoy, semana, mes y largo plazo, carga rápida, tablero y edición al instante. Sigue la etapa de grupos, con tareas compartidas y roles, que se va a probar primero con un equipo de tesis de la facultad. Después, adaptarlo como producto para negocios.
 
 ### Trabajos anteriores (casos para la v1)
 

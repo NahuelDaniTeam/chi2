@@ -75,17 +75,6 @@ _(nada por ahora)_
 
 ## Para los dos
 
-### 6. Detallar los proyectos en desarrollo: barbería y gestión de tareas
-- **Contexto:** son los dos sistemas que vamos a construir. En el sitio aparecen como "en desarrollo" (decidido en `docs/01-vision-alcance.md` §6). Hoy sus tarjetas tienen textos `[PENDIENTE]` en `src/main/java/com/chi2/web/proyecto/CatalogoProyectos.java`.
-- **Qué entregar,** para cada proyecto:
-  - un resumen en una frase;
-  - el problema concreto del negocio;
-  - 3 o 4 funciones principales;
-  - las tecnologías;
-  - en qué estado está.
-- **Dónde:** `docs/02-contenido.md` §4. Después se pasa a `CatalogoProyectos`.
-- cargado por Nahuel, 2026-11-18
-
 ### 7. Confirmar "Análisis de tu negocio" como segundo servicio
 - **Contexto:** la página de inicio muestra dos servicios. El primero es "Sistemas a medida". Para el segundo, Claude propuso "Análisis de tu negocio": relevar los procesos del cliente y mostrarle dónde pierde tiempo. Sale de la experiencia de Nahuel como analista funcional.
 - **Qué entregar:** sí o no. Si es no, proponer otro servicio, como páginas web, mantenimiento o automatizar planillas.
@@ -159,6 +148,7 @@ _(nada por ahora)_
 
 ## Hechos
 
+- [x] Detallar los proyectos en desarrollo (pendiente 6): barbería y gestión de tareas con resumen, problema, solución, tecnologías y estado actual, tomados de sus repos (`chi2-peluqueria` y `chi2-gestor_tareas`). Están en `docs/02-contenido.md` §4 y en `CatalogoProyectos`; conviene que los dos revisen los textos. · 2026-11-19
 - [x] Formulario de contacto (pendiente 15): web y API, aviso por mail con reintentos, anti-spam, borrado a los 3 meses y los 12 criterios de aceptación con tests. Probado de punta a punta con Mailpit. Los ajustes respecto de la especificación están en `docs/03-formulario-contacto.md` §13. · 2026-11-18
 - [x] Logo χ² aplicado como propuesta: encabezado, pie, favicon e íconos para celular. · 2026-11-18
 - [x] Rediseño visual con paleta y tipografías provisorias, revisado en celular y escritorio. Los textos nuevos que sumó están en `docs/02-contenido.md` §7, como propuesta. · 2026-11-18
