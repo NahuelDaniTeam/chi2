@@ -47,8 +47,8 @@ La v1 muestra dos grupos, en este orden:
 |---|---|---|
 | Seguimiento de camiones recolectores | Trabajo anterior de Daniel (caso real) | Detalle pendiente |
 | Cálculo de medidas para una imprenta | Trabajo anterior de Daniel (caso real) | Detalle pendiente |
-| Sistema para barberías | En desarrollo | Detalle pendiente |
-| Gestión de tareas | En desarrollo | Detalle pendiente |
+| Sistema para barberías | En desarrollo (repo `chi2-peluqueria`) | Detallado en `docs/02-contenido.md` §4 |
+| Gestión de tareas | En desarrollo (repo `chi2-gestor_tareas`) | Detallado en `docs/02-contenido.md` §4 |
 
 Cada uno se presenta con problema, solución, tecnologías y estado (los casos, además, con resultado). Los proyectos en desarrollo pasan a "caso" cuando están terminados. Los proyectos de facultad se rotulan como "proyecto académico".
 

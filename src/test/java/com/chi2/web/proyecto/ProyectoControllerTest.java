@@ -59,6 +59,19 @@ class ProyectoControllerTest {
 	}
 
 	@Test
+	void losProyectosEnDesarrolloMuestranSuEstadoActualSinTextosPendientes() throws Exception {
+		for (String slug : new String[] {"barberia", "gestion-de-tareas"}) {
+			mvc.perform(get("/proyectos/" + slug))
+					.andExpect(status().isOk())
+					.andExpect(content().string(allOf(
+							containsString("El problema"),
+							containsString("La solución"),
+							containsString("Estado actual"),
+							not(containsString("[PENDIENTE")))));
+		}
+	}
+
+	@Test
 	void proyectoInexistenteDa404() throws Exception {
 		mvc.perform(get("/proyectos/no-existe")).andExpect(status().isNotFound());
 	}
